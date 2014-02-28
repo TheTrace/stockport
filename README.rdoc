@@ -1,0 +1,112 @@
+== README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+Company
+- name
+- ticker
+- description
+- reference (recommended by sources, highs/lows, etc)
+- currency?
+- country?
+- bourse
+- sector
+- year incorporated?
+
+People (Directors etc)
+- name
+- image
+- contact (email, address, phone)
+
+Positions
+- Company
+- Person
+- position
+- date start
+- date end
+- salary
+- shares held (traded) - maybe in transation table
+
+Transactions
+- trans_type (purchase, dividend, director purchase)
+- date
+- Company
+- (Person?)
+- quantity
+- share price
+- net consideration
+- commission
+- stamp duty
+- PTM levy
+- net payable
+- (cost %)
+- bargin ref
+- avg cost
+- buy limit
+- currency
+- exchange rate
+- ex-div date
+- payment date
+- issue date
+- dividend price
+- net dividend total
+
+Tags
+- name
+- type (eg. growth company, dividend income company, etc)
+
+Link Tags/Company
+- Company
+- Tag
+
+Portfolios
+- Name
+- Description (method, goals, etc. eg. beat the FTSE100)
+
+portfolio links
+- Company/portfolio
+- 
+
+News Items
+- Company
+- source
+- news
+
+Snapshots
+- Company
+- price
+- spread?
+- market cap
+- beta
+- market rate?
+- .. ratios
+- dividend % (yield)
+- dividend cover
+- borrowings (debt)
+- growth (earnings & revenue & cash flow)
+- price to earnings (P/E)
+- outlook (market, bouyant, etc)
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.
