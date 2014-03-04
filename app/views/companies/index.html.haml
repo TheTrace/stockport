@@ -1,0 +1,5 @@
+%h1 Companies
+
+- if !@companies.blank?
+	- @companies.each do |c|
+		%p= c.name
