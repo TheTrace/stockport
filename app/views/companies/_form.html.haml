@@ -1,0 +1,62 @@
+= form_for(@company, :html => { :class => "form-horizontal", :role => "form" } ) do |f|
+	- if @company.errors.any?
+		%div#error_explanation
+			%h2
+				= pluralize(@company.errors.count, "error")
+				prohibited this company from being saved:
+
+			%ul
+				- @company.errors.full_messages.each do |msg|
+					%li= msg
+
+	.form-group
+		= f.label :ticker, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_field :ticker, :class => "form-control autofocus"
+
+	.form-group
+		= f.label :name, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_field :name, :class => "form-control"
+
+	.form-group
+		= f.label :description, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_area :description, :class => "form-control", :rows => "5"
+
+	.form-group
+		= f.label :reference, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_area :reference, :class => "form-control", :rows => "5"
+
+	.form-group
+		= f.label :currency, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_field :currency, :class => "form-control"
+
+	.form-group
+		= f.label :country, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_field :country, :class => "form-control"
+
+	.form-group
+		= f.label :bourse, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_field :bourse, :class => "form-control"
+
+	.form-group
+		= f.label :sector, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_field :sector, :class => "form-control"
+
+	.form-group
+		= f.label :year_incorporated, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_field :year_inc, :class => "form-control"
+
+	.actions
+		.col-sm-offset-2
+			= f.submit class: "btn btn-primary"
+
+	:javascript
+		$('[autofocus]:first').focus();

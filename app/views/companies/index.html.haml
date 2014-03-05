@@ -1,5 +1,35 @@
 %h1 Companies
 
 - if !@companies.blank?
-	- @companies.each do |c|
-		%p= c.name
+	%table.table
+		%thead
+			%tr
+				%th Ticker
+				%th Name
+				%th Desc
+				%th Ref
+				%th Currency
+				%th Country
+				%th Bourse
+				%th Sector
+				%th Year Inc
+				%th
+				%th
+
+		%tbody
+			- current_job = nil
+			- @companies.each do |co|
+				%tr
+					%td= link_to co.ticker, co
+					%td= co.name
+					%td= co.description
+					%td= co.reference
+					%td= co.currency
+					%td= co.country
+					%td= co.bourse
+					%td= co.sector
+					%td= co.year_inc
+
+%br
+
+= link_to 'New Company', new_company_path

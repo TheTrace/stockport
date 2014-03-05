@@ -1,0 +1,40 @@
+.center-block
+	%p#notice= notice
+
+	%H1= @company.name + " (" + @company.ticker + ")"
+
+	%h2
+		%strong Bourse:
+		= @company.bourse
+
+	%p
+		%strong Sector:
+		= @company.sector
+
+	%p
+		%strong Description:
+		= @company.description
+
+	%p
+		%strong Reference:
+		= @company.reference
+
+	%p
+		%strong Currency:
+		= @company.currency
+
+	%p
+		%strong Country:
+		= @company.country
+
+	%p
+		%strong Year Incorporated:
+		= @company.year_inc
+
+
+	= link_to 'Edit', edit_company_path(@company)
+	|
+	= link_to 'Back', companies_path
+	|
+	= link_to 'Destroy', @company, method: :delete, data: { confirm: 'Are you sure you want to DELETE this company?' }
+
