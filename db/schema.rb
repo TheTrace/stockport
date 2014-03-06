@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140304142059) do
+ActiveRecord::Schema.define(version: 20140306085041) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -22,9 +22,14 @@ ActiveRecord::Schema.define(version: 20140304142059) do
     t.string   "country"
     t.string   "bourse"
     t.string   "sector"
-    t.date     "year_inc"
+    t.integer  "year_inc"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "mkt_sector"
+    t.string   "mkt_segment"
+    t.string   "www_address"
+    t.string   "isin"
+    t.string   "share_type"
   end
 
 end

@@ -20,11 +20,19 @@ Company
 - currency?
 - country?
 - bourse
-- sector
-- year incorporated?
+- sector (industry)
+- year incorporated? (change to number - not date)
+- market sector
+- market segment
+- www address
+- isin
+- share type
+- beta (or just in snapshot?)
+
 
 People (Directors etc)
-- name
+- name_first
+- name_last
 - image
 - contact (email, address, phone)
 
@@ -41,7 +49,7 @@ Transactions
 - trans_type (purchase, dividend, director purchase)
 - date
 - Company
-- (Person?)
+- (Person? - eg director deals)
 - quantity
 - share price
 - net consideration
@@ -60,22 +68,23 @@ Transactions
 - issue date
 - dividend price
 - net dividend total
+- user
 
 Tags
 - name
 - type (eg. growth company, dividend income company, etc)
 
 Link Tags/Company
-- Company
-- Tag
+- Company/tag
+- Company/portfolio
+- Company/person
+- Person/position (company included in position)
 
 Portfolios
 - Name
 - Description (method, goals, etc. eg. beat the FTSE100)
+- user
 
-portfolio links
-- Company/portfolio
-- 
 
 News Items
 - Company

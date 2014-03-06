@@ -13,15 +13,17 @@
 				%th Bourse
 				%th Sector
 				%th Year Inc
-				%th
-				%th
+				%th Mkt Sector
+				%th Mkt Segment
+				%th ISIN
+				%th Share Type
 
 		%tbody
 			- current_job = nil
 			- @companies.each do |co|
 				%tr
 					%td= link_to co.ticker, co
-					%td= co.name
+					%td= co.www_address.blank? ? co.name : link_to( co.name, co.www_address, :target => "_blank" )
 					%td= co.description
 					%td= co.reference
 					%td= co.currency
@@ -29,6 +31,10 @@
 					%td= co.bourse
 					%td= co.sector
 					%td= co.year_inc
+					%td= co.mkt_sector
+					%td= co.mkt_segment
+					%td= co.isin
+					%td= co.share_type
 
 %br
 

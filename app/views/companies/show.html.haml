@@ -31,6 +31,26 @@
 		%strong Year Incorporated:
 		= @company.year_inc
 
+	%p
+		%strong Market Sector:
+		= @company.mkt_sector
+
+	%p
+		%strong Market Segment:
+		= @company.mkt_segment
+
+	%p
+		%strong WWW Address:
+		= @company.www_address
+
+	%p
+		%strong ISIN:
+		= @company.isin
+
+	%p
+		%strong Share Type:
+		= @company.share_type
+
 
 	= link_to 'Edit', edit_company_path(@company)
 	|

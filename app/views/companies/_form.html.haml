@@ -54,6 +54,31 @@
 		.col-sm-5
 			= f.text_field :year_inc, :class => "form-control"
 
+	.form-group
+		= f.label :market_sector, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_field :mkt_sector, :class => "form-control"
+
+	.form-group
+		= f.label :market_segment, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_field :mkt_segment, :class => "form-control"
+
+	.form-group
+		= f.label :www_address, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_field :www_address, :class => "form-control"
+
+	.form-group
+		= f.label :isin, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_field :isin, :class => "form-control"
+
+	.form-group
+		= f.label :share_type, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_field :share_type, :class => "form-control"
+
 	.actions
 		.col-sm-offset-2
 			= f.submit class: "btn btn-primary"
