@@ -1,11 +1,33 @@
 .center-block
 	%p#notice= notice
 
-	%H1= @company.name + " (" + @company.ticker + ")"
+	.pull-right= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-trash'></span></button>".html_safe, @company, method: :delete, data: { confirm: 'Are you sure you want to DELETE this company?' }, :title => "Destroy"
+
+	= link_to '&laquo; Back'.html_safe, companies_path
+
+	%H1
+		= @company.name + " (" + @company.ticker + ")"
+		= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-pencil'></span></button>".html_safe, edit_company_path(@company), html = {:title => "Edit"}
 
 	%h2
 		%strong Bourse:
 		= @company.bourse
+
+	%p
+		-#= debug(@new_price)
+		-#= @new_price
+		- price_a = @new_price.join(',')
+		-#= debug(price_a)
+		- price_a = price_a.split(',')
+		&pound;
+		= price_a[0]
+		- p = price_a[3]
+		-#= debug(p)
+		- c =  p[0].eql?('+') ? "stock-up" : p[0].eql?('-') ? "stock-down" : ""
+		%span{ :class => "#{c}" }= "&nbsp;&nbsp;".html_safe + price_a[3]
+		%br
+		= price_a[1]
+		= price_a[2]
 
 	%p
 		%strong Sector:
@@ -50,11 +72,3 @@
 	%p
 		%strong Share Type:
 		= @company.share_type
-
-
-	= link_to 'Edit', edit_company_path(@company)
-	|
-	= link_to 'Back', companies_path
-	|
-	= link_to 'Destroy', @company, method: :delete, data: { confirm: 'Are you sure you want to DELETE this company?' }
-

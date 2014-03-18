@@ -1,15 +1,13 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Use HighCharts(.com) for graphics - free for personal use (highstock too)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
+# Web Services:
+Webservicex.net and Restfulwebservices.net
+http://www.webservicex.net/WS/WSDetails.aspx?CATID=2&WSID=9
+http://download.finance.yahoo.com/d/quotes.csv?s=ABF.L,ADN.L,APF.L,AUE.L,BA.L,BARC.L,BLNX.L,BLT.L,BND,BP.L,BRBY.L,BRK-B,CCH.L,CCL.L,CEO.L,DMGT.L,DNLM.L,EBAY,FGP.L,GFS.L,GKN.L,KO,LLOY.L,LTC.L,MKL,MONI.L,NANO.L,NG.L,OCG.L,OMG.L,PFC.L,PHTM.L,PZC.L,QED.L,RDSB.L,RIO.L,RR.L,SDL.L,SMP,TED.L,TEP.L,VEU,VOD.L,VOO,WCW.L,&f=sl1d1t1c1ohgv&e=.csv
+http://ws.cdyne.com/delayedstockquote/delayedstockquote.asmx
+YQL console (Yahoo Query Language)
 
 * Database creation
 Company
@@ -105,6 +103,11 @@ Snapshots
 - growth (earnings & revenue & cash flow)
 - price to earnings (P/E)
 - outlook (market, bouyant, etc)
+
+Historical Prices
+- company
+- date
+- price
 
 * Database initialization
 

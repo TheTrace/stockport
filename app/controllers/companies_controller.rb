@@ -1,4 +1,6 @@
 class CompaniesController < ApplicationController
+require 'csv'
+require 'open-uri'
 
 	before_action :set_company, only: [:show, :edit, :update, :destroy]
 
@@ -7,6 +9,35 @@ class CompaniesController < ApplicationController
 	end
 
 	def show
+		#connection = Net::HTTP.new(url)
+		#response = ""
+		#connection.start do |http|
+			#req = Net::HTTP::Get.new(stock+flags)
+			#response = http.request(req)
+		#end
+		#response.body.gsub!(/\0/, '') if response
+		#@new_price = IO.binread(response.body) if response
+		tick = @company.ticker
+		tick += ".L" if @company.bourse.eql?("LSE")
+		@new_price = read_stock(tick)
+	end
+
+	def read_stock(ticker)
+		return "" if ticker.blank?
+		url = "http://finance.yahoo.com/d/quotes.csv?s="
+		#stock = "TSCO.L"
+		#flags = "&f=sn"
+		flags = "&f=l1d1t1c"
+		data = []
+		begin
+			open(url+ticker+flags) do |f|
+				data = CSV.parse f
+			end
+		rescue IOError => e
+			# Silently catch the exception ...
+		end
+
+		return data
 	end
 
 	# GET /company/new
