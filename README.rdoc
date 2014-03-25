@@ -28,23 +28,8 @@ Company
 - beta (or just in snapshot?)
 
 
-People (Directors etc)
-- name_first
-- name_last
-- image
-- contact (email, address, phone)
-
-Positions
-- Company
-- Person
-- position
-- date start
-- date end
-- salary
-- shares held (traded) - maybe in transation table
-
 Transactions
-- trans_type (purchase, dividend, director purchase)
+- trans_type (purchase, sell, dividend, director purchase)
 - date
 - Company
 - (Person? - eg director deals)
@@ -67,6 +52,21 @@ Transactions
 - dividend price
 - net dividend total
 - user
+
+People (Directors etc)
+- name_first
+- name_last
+- image
+- contact (email, address, phone)
+
+Positions
+- Company
+- Person
+- position
+- date start
+- date end
+- salary
+- shares held (traded) - maybe in transation table
 
 Tags
 - name
@@ -104,10 +104,15 @@ Snapshots
 - price to earnings (P/E)
 - outlook (market, bouyant, etc)
 
-Historical Prices
+Historical Prices (from Yahoo!)
 - company
 - date
-- price
+- open
+- high
+- low
+- close
+- volume
+- adj_close
 
 * Database initialization
 

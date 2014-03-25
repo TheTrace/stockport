@@ -1,0 +1,143 @@
+%p#notice= notice
+
+%h2
+	Trans type:
+	= @transaction.trans_type
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Trans date:
+		.col-sm-4
+			= @transaction.trans_date
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Company:
+		.col-sm-4
+			= @transaction.company_id 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Quantity:
+ 		.col-sm-4
+			= @transaction.quantity
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Price:
+		.col-sm-4
+			= @transaction.price 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Consideration:
+ 		.col-sm-4
+			= @transaction.consideration
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Commission:
+		.col-sm-4
+			= @transaction.commission 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Stamp Duty:
+		.col-sm-4
+			= @transaction.stamp_duty 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 PTM_levy:
+		.col-sm-4
+			= @transaction.PTM_levy 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Payable:
+		.col-sm-4
+			= @transaction.payable 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Cost Percent:
+		.col-sm-4
+			= @transaction.cost_percent 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Bargin Ref:
+		.col-sm-4
+			= @transaction.bargin_ref 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Average Cost:
+		.col-sm-4
+			= @transaction.avg_cost 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Buy Limit:
+		.col-sm-4
+			= @transaction.buy_limit 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Currency:
+		.col-sm-4
+			= @transaction.currency 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Exchange Rate:
+		.col-sm-4
+			= @transaction.x_rate 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Ex-dividend Date:
+		.col-sm-4
+			= @transaction.ex_div_date 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Payment Date:
+		.col-sm-4
+			= @transaction.payment_date 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Issue Date:
+		.col-sm-4
+			= @transaction.issue_date 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Dividend Price:
+		.col-sm-4
+			= @transaction.div_price 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Dividend Net Total:
+		.col-sm-4
+			= @transaction.div_net_total 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Person (director etc?):
+		/ Needs to change to id link to people table
+		.col-sm-4
+			= @transaction.person 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 user_id:
+		.col-sm-4
+			= @transaction.user_id 
+
+
+= link_to 'Edit', edit_transaction_path(@transaction)
+|
+= link_to 'Index', transactions_path

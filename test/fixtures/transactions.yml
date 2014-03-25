@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trans_type: MyString
+  trans_date: 2014-03-19
+  company_id: 1
+  quantity: 1
+
+two:
+  trans_type: MyString
+  trans_date: 2014-03-19
+  company_id: 1
+  quantity: 1

@@ -1,0 +1,27 @@
+%h1 Listing transactions
+
+%table.table
+	%thead
+		%tr
+			%th Trans type
+			%th Trans date
+			%th Company
+			%th Quantity
+			%th
+			%th
+			%th
+
+	%tbody
+		- @transactions.each do |transaction|
+			%tr
+				%td= transaction.trans_type
+				%td= transaction.trans_date
+				%td= transaction.company_id
+				%td= transaction.quantity
+				%td= link_to 'Show', transaction
+				%td= link_to 'Edit', edit_transaction_path(transaction)
+				%td= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Transaction', new_transaction_path
