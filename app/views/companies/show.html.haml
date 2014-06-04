@@ -63,7 +63,7 @@
 
 	%p
 		%strong WWW Address:
-		= @company.www_address
+		= link_to @company.www_address, @company.www_address, :target => "_blank"
 
 	%p
 		%strong ISIN:

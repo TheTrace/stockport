@@ -1,10 +1,11 @@
-.pull-right= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-plus'></span> New Company</button>".html_safe, new_company_path, html = {:title => "New"}
+.pull-right{ :style => "margin-top: 22px;" }= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-plus'></span> New Company</button>".html_safe, new_company_path, html = {:title => "New"}
 
 
-%h1 Companies
+%h1{ :style => "float: left;" }= link_to "Companies", :transactions
 
-%div
+%div{ :style => "text-align: center; margin-top: 10px" }
 	%img{ :src => "https://ci6.googleusercontent.com/proxy/BS5kQSl7fwg_CUsYJsyV3h4ajvfDaPi5hG0nrUGD3rZx9R5JpBNyjMQAc99RSS23qOavBv0hRqsAf25v=s0-d-e1-ft#http://uk.advfn.com/ct.php?ct=NzM5NTU=" }
+	%br
 	FTSE 100
 
 - if !@companies.blank?

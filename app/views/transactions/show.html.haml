@@ -14,55 +14,62 @@
 	.form-group
 		%strong.col-sm-3 Company:
 		.col-sm-4
-			= @transaction.company_id 
+			= @transaction.company.ticker + " - " + @transaction.company.name if @transaction.company 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Quantity:
- 		.col-sm-4
+		.col-sm-4
 			= @transaction.quantity
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Price:
 		.col-sm-4
-			= @transaction.price 
+			= @transaction.price
+			p
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Consideration:
- 		.col-sm-4
+		.col-sm-4
+			&pound;
 			= @transaction.consideration
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Commission:
 		.col-sm-4
+			&pound;
 			= @transaction.commission 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Stamp Duty:
 		.col-sm-4
+			&pound;
 			= @transaction.stamp_duty 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 PTM_levy:
 		.col-sm-4
+			&pound;
 			= @transaction.PTM_levy 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Payable:
 		.col-sm-4
+			&pound;
 			= @transaction.payable 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Cost Percent:
 		.col-sm-4
-			= @transaction.cost_percent 
+			= @transaction.cost_percent
+			\%
 
 .form-horizontal
 	.form-group
@@ -74,13 +81,15 @@
 	.form-group
 		%strong.col-sm-3 Average Cost:
 		.col-sm-4
-			= @transaction.avg_cost 
+			= @transaction.avg_cost
+			p
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Buy Limit:
 		.col-sm-4
-			= @transaction.buy_limit 
+			= @transaction.buy_limit
+			p
 
 .form-horizontal
 	.form-group

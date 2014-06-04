@@ -22,7 +22,7 @@
 	.form-group
 		= f.label :company_id, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :company_id, :class => "form-control"
+			= f.select :company_id, options_for_select([["Please select...",""]]+Company.for_select, @transaction.company_id), {}, :class => "form-control"
 
 	.form-group
 		= f.label :quantity, :class => "control-label col-sm-2"
@@ -32,87 +32,87 @@
 	.form-group
 		= f.label :price, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :price, :class => "form-control"
+			= f.number_field :price, :class => "form-control", :step => "any"
 
 	.form-group
 		= f.label :consideration, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :consideration, :class => "form-control"
+			= f.number_field :consideration, :class => "form-control", :step => "any"
 
 	.form-group
 		= f.label :commission, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :commission, :class => "form-control"
+			= f.number_field :commission, :class => "form-control", :step => "any"
 
 	.form-group
 		= f.label :stamp_duty, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :stamp_duty, :class => "form-control"
+			= f.number_field :stamp_duty, :class => "form-control", :step => "any"
 
 	.form-group
 		= f.label :PTM_levy, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :PTM_levy, :class => "form-control"
+			= f.number_field :PTM_levy, :class => "form-control", :step => "any"
 
 	.form-group
 		= f.label :payable, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :payable, :class => "form-control"
+			= f.number_field :payable, :class => "form-control", :step => "any"
 
 	.form-group
 		= f.label :cost_percent, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :cost_percent, :class => "form-control"
+			= f.number_field :cost_percent, :class => "form-control", :step => "any"
 
 	.form-group
 		= f.label :bargin_ref, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :bargin_ref, :class => "form-control"
+			= f.text_field :bargin_ref, :class => "form-control"
 
 	.form-group
 		= f.label :avg_cost, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :avg_cost, :class => "form-control"
+			= f.number_field :avg_cost, :class => "form-control", :step => "any"
 
 	.form-group
 		= f.label :buy_limit, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :buy_limit, :class => "form-control"
+			= f.number_field :buy_limit, :class => "form-control", :step => "any"
 
 	.form-group
 		= f.label :currency, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :currency, :class => "form-control"
+			= f.text_field :currency, :class => "form-control"
 
 	.form-group
 		= f.label :x_rate, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :x_rate, :class => "form-control"
+			= f.number_field :x_rate, :class => "form-control", :step => "any"
 
 	.form-group
 		= f.label :ex_div_date, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :ex_div_date, :class => "form-control"
+			= f.date_select :ex_div_date, :class => "form-control"
 
 	.form-group
 		= f.label :payment_date, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :payment_date, :class => "form-control"
+			= f.date_select :payment_date, :class => "form-control"
 
 	.form-group
 		= f.label :issue_date, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :issue_date, :class => "form-control"
+			= f.date_select :issue_date, :class => "form-control"
 
 	.form-group
 		= f.label :div_price, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :div_price, :class => "form-control"
+			= f.number_field :div_price, :class => "form-control", :step => "any"
 
 	.form-group
 		= f.label :div_net_total, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :div_net_total, :class => "form-control"
+			= f.number_field :div_net_total, :class => "form-control", :step => "any"
 
 	.form-group
 		= f.label :person, :class => "control-label col-sm-2"

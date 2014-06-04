@@ -1,4 +1,4 @@
-%h1 Listing transactions
+%h1= link_to "Listing transactions", :companies
 
 %table.table
 	%thead
@@ -16,7 +16,7 @@
 			%tr
 				%td= transaction.trans_type
 				%td= transaction.trans_date
-				%td= transaction.company_id
+				%td= transaction.company.ticker + " - " + transaction.company.name if transaction.company
 				%td= transaction.quantity
 				%td= link_to 'Show', transaction
 				%td= link_to 'Edit', edit_transaction_path(transaction)
