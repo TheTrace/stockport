@@ -5,7 +5,7 @@ require 'open-uri'
 	before_action :set_company, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@companies = Company.all
+		@companies = Company.order("name,ticker").all
 	end
 
 	def show

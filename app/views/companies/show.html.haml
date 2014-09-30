@@ -6,7 +6,11 @@
 	= link_to '&laquo; Back'.html_safe, companies_path
 
 	%H1
-		= @company.name + " (" + @company.ticker + ")"
+		= @company.name
+		(
+		-#= link_to @company.ticker, "https://uk.finance.yahoo.com/q?s=" + @company.ticker + "&ql=1", :target => "_blank" if !@company.ticker.blank?
+		= link_to @company.ticker, "https://www.google.co.uk/finance?q=#{@company.bourse}%3A#{@company.ticker}&authuser=0", :target => "_blank" if !@company.bourse.blank? && !@company.ticker.blank?
+		)
 		= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-pencil'></span></button>".html_safe, edit_company_path(@company), html = {:title => "Edit"}
 
 	%h2
@@ -63,7 +67,7 @@
 
 	%p
 		%strong WWW Address:
-		= link_to @company.www_address, @company.www_address, :target => "_blank"
+		= link_to @company.www_address, @company.www_address, :target => "_blank" if !@company.www_address.blank?
 
 	%p
 		%strong ISIN:

@@ -1,0 +1,20 @@
+%p#notice= notice
+
+= link_to "<< Back to Index", users_path
+%br
+%br
+%br
+%br
+
+.col-sm-4
+	.row
+		%aside.span4
+			%section
+				%h1
+					= gravatar_for(@user)
+					= @user.name
+					&nbsp;&nbsp;&nbsp;
+					= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-pencil'></span></button>".html_safe, edit_user_path(@user), html = {:title => "Edit"} if current_user?(@user) || is_admin?
+			= @user.email
+
+%div{ :style => "clear:both;" }

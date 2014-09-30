@@ -1,0 +1,13 @@
+.pull-right= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-trash'></span></button>".html_safe, @user, method: :delete, data: { confirm: "Are you sure you want to DELETE this user?\n (#{@user.name})" }, :title => "Destroy" if is_admin?
+
+= link_to '<< Index', users_path
+
+%h1
+	Editing User
+	= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-eye-open'></span></button>".html_safe, @user, :title => "Show User"
+
+= render 'form'
+
+.col-sm-offset-2
+	= gravatar_for @user
+	= link_to "change", "http://gravatar.com/emails", :target => "_blank"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319085645) do
+ActiveRecord::Schema.define(version: 20140604140430) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(version: 20140319085645) do
     t.decimal  "div_net_total", precision: 10, scale: 4
     t.text     "person"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "remember_token"
+    t.integer  "level"
+    t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

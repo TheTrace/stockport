@@ -1,0 +1,28 @@
+- provide(:title, "Sign in")
+
+= form_for(:session, url: sessions_path, :html => { :class => "form-horizontal form-signin", :role => "form" }) do |f|
+
+	%h2.form-signin-heading Please Sign In
+
+	.row
+		.span6.offset3
+			-# Following doesn't work
+			= render 'shared/error_messages'
+
+			.container
+				- flash.each do |key, value|
+					.alert{ :class => "alert-#{ key }" }= value
+
+			.form-group
+				= f.label :email, :class => "control-label col-sm-2"
+				.col-sm-5
+					= f.text_field :email, :type => "email", :class => "form-control", :placeholder => "Email address", :required => true, :autofocus => true
+
+			.form-group
+				= f.label :password, :class => "control-label col-sm-2"
+				.col-sm-5
+					= f.password_field :password, :class => "form-control", :placeholder => "Password", :required => true
+
+			.actions
+				.col-sm-offset-2
+					= f.submit "Sign in", class: "btn btn-large btn-primary"

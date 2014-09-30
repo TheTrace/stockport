@@ -32,7 +32,8 @@
 				%tr
 					%td= link_to co.ticker, co
 					%td= co.www_address.blank? ? co.name : link_to( co.name, co.www_address, :target => "_blank" )
-					%td= co.description
+					%td
+						-#= co.description
 					%td= co.reference
 					%td= co.currency
 					%td= co.country

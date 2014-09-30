@@ -1,20 +1,17 @@
 %p#notice= notice
 
 %h2
-	Trans type:
-	= @transaction.trans_type
+	- if !@transaction.trans_type.blank?
+		= Transaction::TransTypes::NAMES[@transaction.trans_type]
+		= @transaction.company.ticker + " - " + @transaction.company.name if @transaction.company 
+	- else
+		Transaction
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Trans date:
 		.col-sm-4
-			= @transaction.trans_date
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Company:
-		.col-sm-4
-			= @transaction.company.ticker + " - " + @transaction.company.name if @transaction.company 
+			= @transaction.trans_date.strftime("%d-%b-%Y") if @transaction.trans_date
 
 .form-horizontal
 	.form-group

@@ -1,0 +1,36 @@
+.pull-right
+	= link_to '<span class="glyphicon glyphicon-plus"></span> Add User'.html_safe, new_user_path, :class => "btn btn-default" #if is_admin?
+
+%h1 All Users
+
+-#= will_paginate
+
+%ul.users
+	/ Uses the _user partial!
+	= render @users
+
+-#= will_paginate
+/
+	%table.table
+		%thead
+			%tr
+				%th
+				%th Name
+				%th Email
+				%th 
+				%th 
+				%th 
+
+		%tbody
+			- @users.each do |user|
+				%tr
+					%td= gravatar_for user, size: 52
+					%td= user.name
+					%td= user.email
+					%td
+						= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-eye-open'></span></button>".html_safe, user, html = {:title => "Show"}
+						= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-pencil'></span></button>".html_safe, edit_user_path(user), html = {:title => "Edit"}
+					%td.text-right= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-trash'></span></button>".html_safe, user, method: :delete, data: { confirm: 'Are you sure you want to delete this user?' }, :title => "Destroy"
+
+
+-#= link_to 'New user', new_user_path if is_admin?

@@ -1,0 +1,41 @@
+/ Fixed navbar
+- if signed_in?
+	.navbar.navbar-default.navbar-fixed-top{ :role => "navigation" }
+		.container
+			.navbar-header
+				%button.navbar-toggle{ :type => "button", :"data-toggle" => "collapse", :"data-target" => ".navbar-collapse" }
+					%span.sr-only Toggle navigation
+					%span.icon-bar
+					%span.icon-bar
+					%span.icon-bar
+
+				%a.navbar-brand{ :href => "/" } Stock-Portfolio
+			.navbar-collapse.collapse
+				%ul.nav.navbar-nav
+					%li{ :class => "#{params[:controller].eql?("companies") ? "active" : ""}" }= link_to "Home", '/'
+					%li{ :class => "#{params[:controller].eql?("transactions") ? "active" : ""}" }= link_to "Transactions", :transactions
+					%li.dropdown
+						%a.dropdown-toggle{ :href => "#", :"data-toggle" => "dropdown" }
+							Admin
+							%b.caret
+						%ul.dropdown-menu
+							%li{ :class => "#{params[:controller].eql?("users") ? "active" : ""}" }= link_to "Users", :users
+							%li
+								%a{ :href => "#" } Another action
+							%li
+								%a{ :href => "#" } Something else here
+							%li.divider
+							%li.dropdown-header Nav header
+							%li
+								%a{ :href => "#" } Separated link
+							%li
+								%a{ :href => "#" } One more separated link
+				%ul.nav.navbar-nav.navbar-right
+					%li.dropdown.active
+						%a.dropdown-toggle{ :href => "#", :"data-toggle" => "dropdown", :class => "active" }
+							= @current_user.name
+							%b.caret
+						%ul.dropdown-menu
+							%li{ :class => "#{"active" if params[:controller].eql?("users") && @user && @user == @current_user}" }= link_to "My Profile", edit_user_path(@current_user)
+							%li.divider
+							%li= link_to "Sign out", signout_path, method: "delete"
