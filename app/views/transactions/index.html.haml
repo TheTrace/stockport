@@ -1,26 +1,39 @@
+.pull-right{ :style => "margin-top: 22px;" }= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-plus'></span> New Transaction</button>".html_safe, new_transaction_path, html = {:title => "New"}
+
 %h1= link_to "Listing transactions", :companies
 
 %table.table
 	%thead
 		%tr
-			%th Trans type
 			%th Trans date
 			%th Company
+			%th Trans type
 			%th Quantity
+			%th Price
+			%th Total Cost &pound;
+			%th Avg Cost
+			%th % Cost
 			%th
-			%th
-			%th
+
 
 	%tbody
 		- @transactions.each do |transaction|
 			%tr
-				%td= transaction.trans_type
-				%td= transaction.trans_date
+				%td= transaction.trans_date.strftime("%d-%b-%Y") if transaction.trans_date
 				%td= transaction.company.ticker + " - " + transaction.company.name if transaction.company
+				%td= transaction.trans_type
 				%td= transaction.quantity
-				%td= link_to 'Show', transaction
-				%td= link_to 'Edit', edit_transaction_path(transaction)
-				%td= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' }
+				%td= transaction.price
+				- expenses = transaction.commission + transaction.stamp_duty + transaction.PTM_levy
+				- total_cost = transaction.consideration + expenses
+				%td= total_cost
+				%td= total_cost * 100 / transaction.quantity
+				%td= (expenses * 100 / total_cost).to_s + " %"
+				%td= link_to "<button type='button' class='btn btn-default btn-xs pull-right'><span class='glyphicon glyphicon-eye-open'></span></button>".html_safe, transaction, html = {:title => "Show"}
+
+				-#%td= link_to 'Show', transaction
+				-#%td= link_to 'Edit', edit_transaction_path(transaction)
+				-#%td= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 

@@ -6,8 +6,8 @@
 development:
   adapter: mysql2
   host: localhost
-  username: amateurfx
-  password: 87YrPfjusEtuNKPN
+  username: stockport_user
+  password: yBublqYa2G1
   database: stockport
   pool: 5
   timeout: 5000
