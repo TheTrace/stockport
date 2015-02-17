@@ -82,7 +82,7 @@ Portfolios
 - Name
 - Description (method, goals, etc. eg. beat the FTSE100)
 - user
-
+- transactions (?)
 
 News Items
 - Company
