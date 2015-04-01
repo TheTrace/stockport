@@ -10,7 +10,7 @@
 			%th Trans type
 			%th.text-right Quantity
 			%th.text-right Price
-			%th.text-right &pound; Total Cost
+			%th.text-right &pound; Total
 			%th.text-right Avg Cost
 			%th.text-right % Cost
 			%th
@@ -23,7 +23,9 @@
 			- tt_sell = transaction.trans_type.eql?(Transaction::TransTypes::SELL)
 			%tr{ :class => "#{'success' if tt_div}" }
 				%td= transaction.trans_date.strftime("%d-%b-%Y") if transaction.trans_date
-				%td= transaction.company.ticker + " - " + transaction.company.name if transaction.company
+				%td
+					= link_to transaction.company.ticker, transaction.company
+					= " - " + transaction.company.name if transaction.company
 				%td
 					- t_class = 'label-success' if tt_div
 					- t_class = 'label-default' if tt_buy

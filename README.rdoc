@@ -29,7 +29,7 @@ Company
 
 
 Transactions
-- trans_type (purchase, sell, dividend, director purchase)
+- trans_type (purchase, sell, dividend, director purchase, cash in/out)
 - date
 - Company
 - (Person? - eg director deals)
@@ -39,10 +39,10 @@ Transactions
 - commission
 - stamp duty
 - PTM levy
-- net payable
-- (cost %)
+-# net payable
+-# (cost %)
 - bargin ref
-- avg cost
+-# avg cost
 - buy limit
 - currency
 - exchange rate
@@ -72,9 +72,10 @@ Tags
 - name
 - type (eg. growth company, dividend income company, etc)
 
-Link Tags/Company
+Links
+- Tags/Company
 - Company/tag
-- Company/portfolio
+- Company/portfolio or more like Transaction/portfolio
 - Company/person
 - Person/position (company included in position)
 
@@ -85,6 +86,7 @@ Portfolios
 - transactions (?)
 
 News Items
+- Date
 - Company
 - source
 - news
@@ -113,4 +115,9 @@ Historical Prices (from Yahoo!)
 - close
 - volume
 - adj_close
+
+Things I need...
+- view by timeline as to when stock was bought, high/low whilst I've had it and percentages over time
+- be able to see capital gains AND dividend income
+- sort transactions index by company (not just it's id')
 

@@ -122,7 +122,9 @@
 	.form-group
 		= f.label :user_id, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :user_id, :class => "form-control"
+			-# if @transaction.user
+				-#= f.hidden_field :user_id, :value => "#{@transaction.user.id}"
+			= f.select :user_id, options_for_select(User.all.map{|t|[t.name, t.id]}, @transaction.user_id), {}, :class => "form-control"
 
 	.actions
 		.col-sm-offset-2

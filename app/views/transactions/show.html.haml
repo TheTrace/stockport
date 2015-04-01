@@ -139,9 +139,9 @@
 
 .form-horizontal
 	.form-group
-		%strong.col-sm-3 user_id:
+		%strong.col-sm-3 User:
 		.col-sm-4
-			= @transaction.user_id 
+			= @transaction.user.name if @transaction.user
 
 
 = link_to 'Edit', edit_transaction_path(@transaction)

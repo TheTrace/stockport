@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.order('trans_date').all
+    @transactions = Transaction.order('company_id,trans_date').all
   end
 
   # GET /transactions/1
@@ -15,6 +15,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   def new
     @transaction = Transaction.new
+		@transaction.user = @current_user
   end
 
   # GET /transactions/1/edit
