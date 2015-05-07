@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140604140430) do
+ActiveRecord::Schema.define(version: 20150410084842) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20140604140430) do
     t.string   "share_type"
   end
 
+  create_table "holdings", force: true do |t|
+    t.integer  "company_id"
+    t.decimal  "book_value", precision: 10, scale: 4
+    t.date     "opened_at"
+    t.date     "closed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "transactions", force: true do |t|
     t.string   "trans_type"
     t.date     "trans_date"
@@ -42,10 +51,7 @@ ActiveRecord::Schema.define(version: 20140604140430) do
     t.decimal  "commission",    precision: 10, scale: 4
     t.decimal  "stamp_duty",    precision: 10, scale: 4
     t.decimal  "PTM_levy",      precision: 10, scale: 4
-    t.decimal  "payable",       precision: 10, scale: 4
-    t.decimal  "cost_percent",  precision: 10, scale: 6
     t.string   "bargin_ref"
-    t.decimal  "avg_cost",      precision: 10, scale: 4
     t.decimal  "buy_limit",     precision: 10, scale: 4
     t.string   "currency"
     t.decimal  "x_rate",        precision: 10, scale: 6
@@ -58,6 +64,7 @@ ActiveRecord::Schema.define(version: 20140604140430) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "holding_id"
   end
 
   create_table "users", force: true do |t|

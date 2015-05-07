@@ -72,7 +72,7 @@ Tags
 - name
 - type (eg. growth company, dividend income company, etc)
 
-Links
+Links (Needed?)
 - Tags/Company
 - Company/tag
 - Company/portfolio or more like Transaction/portfolio or more like Holding/Portfolio
@@ -131,6 +131,11 @@ Things I need...
 
 # April 2015
 Need to:
+Add "Name" to holding, maybe description too
+Add select_for for holding
+Add all the framework for holding (CRUD)
+
+Done:
 Remove calculated fields like:
 - Payable
 - Cost Percent

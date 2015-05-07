@@ -55,24 +55,9 @@
 			= f.number_field :PTM_levy, :class => "form-control", :step => "any"
 
 	.form-group
-		= f.label :payable, :class => "control-label col-sm-2"
-		.col-sm-5
-			= f.number_field :payable, :class => "form-control", :step => "any"
-
-	.form-group
-		= f.label :cost_percent, :class => "control-label col-sm-2"
-		.col-sm-5
-			= f.number_field :cost_percent, :class => "form-control", :step => "any"
-
-	.form-group
 		= f.label :bargin_ref, :class => "control-label col-sm-2"
 		.col-sm-5
 			= f.text_field :bargin_ref, :class => "form-control"
-
-	.form-group
-		= f.label :avg_cost, :class => "control-label col-sm-2"
-		.col-sm-5
-			= f.number_field :avg_cost, :class => "form-control", :step => "any"
 
 	.form-group
 		= f.label :buy_limit, :class => "control-label col-sm-2"
@@ -119,6 +104,13 @@
 		= f.label :person, :class => "control-label col-sm-2"
 		.col-sm-5
 			= f.number_field :person, :class => "form-control"
+
+	.form-group
+		= f.label :holding_id, :class => "control-label col-sm-2"
+		.col-sm-5
+			-# if @transaction.user
+				-#= f.hidden_field :user_id, :value => "#{@transaction.user.id}"
+			= f.select :holding_id, options_for_select(Holding.all.map{|t|[t.company_id, t.id]}, @transaction.holding_id), {}, :class => "form-control"
 
 	.form-group
 		= f.label :user_id, :class => "control-label col-sm-2"

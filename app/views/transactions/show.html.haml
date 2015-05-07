@@ -59,13 +59,13 @@
 		%strong.col-sm-3 Payable:
 		.col-sm-4
 			&pound;
-			= @transaction.payable 
+			= @transaction.total_cost 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Cost Percent:
 		.col-sm-4
-			= @transaction.cost_percent
+			= format("%.2f", @transaction.percent_cost).to_s
 			\%
 
 .form-horizontal
