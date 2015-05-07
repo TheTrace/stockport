@@ -20,6 +20,22 @@ class Transaction < ActiveRecord::Base
 		end
 	end
   
+	class TransCurrency
+		GBP = "gbp"
+		USD = "usd"
+		
+		NAMES = {
+			GBP => "£ GB",
+			USD => "$ US"
+		}
+		
+		ALL = [GBP, USD]
+		
+		def self.for_select
+			ALL.map{|t|[NAMES[t],t]}
+		end
+	end
+	
   def expenses
     exp = 0.00
     exp += commission.to_f if !commission.blank?

@@ -82,7 +82,8 @@
 	.form-group
 		= f.label :currency, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.text_field :currency, :class => "form-control"
+			-#= f.text_field :currency, :class => "form-control"
+			= f.select :currency, options_for_select(Transaction::TransCurrency.for_select, @transaction.currency), {}, :class => "form-control"
 
 	.form-group
 		= f.label :x_rate, :class => "control-label col-sm-2"

@@ -78,8 +78,7 @@
 	.form-group
 		%strong.col-sm-3 Average Cost:
 		.col-sm-4
-			= @transaction.avg_cost
-			p
+			= format("%.2f p", @transaction.avg_cost)
 
 .form-horizontal
 	.form-group

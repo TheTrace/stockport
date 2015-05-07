@@ -19,7 +19,7 @@ Company
 - country?
 - bourse
 - sector (industry)
-- year incorporated? (change to number - not date)
+- year incorporated? (change to number - not date - DONE)
 - market sector
 - market segment
 - www address
@@ -75,15 +75,23 @@ Tags
 Links
 - Tags/Company
 - Company/tag
-- Company/portfolio or more like Transaction/portfolio
+- Company/portfolio or more like Transaction/portfolio or more like Holding/Portfolio
 - Company/person
 - Person/position (company included in position)
+
+Holdings
+- Company
+- Transactions
+- Current value (calculated from company transactions)
+- closing date (?)
+
 
 Portfolios
 - Name
 - Description (method, goals, etc. eg. beat the FTSE100)
 - user
-- transactions (?)
+- Holdings
+-! transactions (?)
 
 News Items
 - Date
@@ -121,3 +129,9 @@ Things I need...
 - be able to see capital gains AND dividend income
 - sort transactions index by company (not just it's id')
 
+# April 2015
+Need to:
+Remove calculated fields like:
+- Payable
+- Cost Percent
+- Avg Cost
