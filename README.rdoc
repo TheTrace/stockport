@@ -1,6 +1,7 @@
 == README
 
 Use HighCharts(.com) for graphics - free for personal use (highstock too)
+cf http://gionkunz.github.io/chartist-js/
 
 # Web Services:
 Webservicex.net and Restfulwebservices.net
