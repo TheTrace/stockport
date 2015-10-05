@@ -1,0 +1,52 @@
+.pull-right{ :style => "margin-top: 22px;" }= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-plus'></span> New Holding</button>".html_safe, new_holding_path, html = {:title => "New"}
+
+%h1= link_to "Listing holdings", :companies
+
+%table.table
+	%thead
+		%tr
+			%th Opening Date
+			%th Company
+			%th.text-right Book Value
+			%th Closing Date
+			%th
+
+	%tbody
+		- @holdings.each do |holding|
+			- tt_div = holding.trans_type.eql?(holding::TransTypes::DIVIDEND)
+			- tt_buy = holding.trans_type.eql?(holding::TransTypes::BUY)
+			- tt_sell = holding.trans_type.eql?(holding::TransTypes::SELL)
+			%tr{ :class => "#{'success' if tt_div}" }
+				%td= holding.trans_date.strftime("%d-%b-%Y") if holding.trans_date
+				%td
+					= link_to holding.company.ticker, holding.company
+					= " - " + holding.company.name if holding.company
+				%td
+					- t_class = 'label-success' if tt_div
+					- t_class = 'label-default' if tt_buy
+					- t_class = 'label-primary' if tt_sell
+					%span.label{ :class => "#{t_class}"}= holding::TransTypes::NAMES[holding.trans_type]
+				%td.text-right= holding.quantity
+				- if holding.trans_type.eql?(holding::TransTypes::BUY)
+					%td.text-right= holding.price.to_s + " p"
+					%td.text-right.text-danger= format("&pound; %.2f", holding.total_cost).html_safe
+					%td.text-right= format("%.2f p", holding.avg_cost)
+					%td.text-right= format("%.2f", holding.percent_cost).to_s + "%"
+				- else
+					%td.text-right= holding.div_price.to_s + " p"
+					%td.text-right= format("&pound; %.2f", holding.div_net_total).html_safe
+					%td.text-right= format("%.2f p", holding.avg_cost)
+					%td.text-right= format("%.2f", holding.percent_cost).to_s + "%"
+        
+				-#%td= holding.percent_cost.to_s + "%"
+				-#%td= holding.total_cost * 100 / holding.quantity
+				-#%td= (holding.expenses * 100 / holding.total_cost).to_s + " %"
+				%td= link_to "<button type='button' class='btn btn-default btn-xs pull-right'><span class='glyphicon glyphicon-eye-open'></span></button>".html_safe, holding, html = {:title => "Show"}
+
+				-#%td= link_to 'Show', holding
+				-#%td= link_to 'Edit', edit_holding_path(holding)
+				-#%td= link_to 'Destroy', holding, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Holding', new_holding_path

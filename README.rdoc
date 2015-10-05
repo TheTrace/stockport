@@ -27,6 +27,7 @@ Company
 - isin
 - share type
 - beta (or just in snapshot?)
+- Logo (image)
 
 
 Transactions
@@ -53,6 +54,7 @@ Transactions
 - dividend price
 - net dividend total
 - user
+- Holding (ID) -> // Have this on the edit page rather than the create page, then can filter Holding by Company (or use Ajax on entry form!)
 
 People (Directors etc)
 - name_first
@@ -81,8 +83,12 @@ Links (Needed?)
 - Person/position (company included in position)
 
 Holdings
+- Name
+- Description
 - Company
-- Transactions
+- Transactions (point here)
+	- sum open trans
+	- sum closed trans
 - Current value (calculated from company transactions)
 - closing date (?)
 

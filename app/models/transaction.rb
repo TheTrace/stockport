@@ -35,7 +35,7 @@ class Transaction < ActiveRecord::Base
 			ALL.map{|t|[NAMES[t],t]}
 		end
 	end
-	
+
   def expenses
     exp = 0.00
     exp += commission.to_f if !commission.blank?
@@ -66,4 +66,12 @@ class Transaction < ActiveRecord::Base
       0.00
     end
   end
+	
+	def currency_format(val)
+		if self.currency.eql?(TransCurrency::USD)
+			return "$ " + val.to_s
+		else
+			return val.to_s + " p"
+		end
+	end
 end

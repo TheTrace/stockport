@@ -14,7 +14,7 @@
 			%tr
 				%th Ticker
 				%th Name
-				%th Desc
+				-#%th Desc
 				%th Ref
 				%th Currency
 				%th Country
@@ -32,9 +32,10 @@
 				%tr
 					%td= link_to co.ticker, co
 					%td= co.www_address.blank? ? co.name : link_to( co.name, co.www_address, :target => "_blank" )
-					%td
+					-#%td
 						-#= co.description
-					%td= co.reference
+					%td{ :"data-toggle" => "tooltip", :"data-placement" => "top", :title => "#{ co.description }" }
+						= co.reference
 					%td= co.currency
 					%td= co.country
 					%td= co.bourse

@@ -1,148 +1,148 @@
 %p#notice= notice
 
 %h2
-	- if !@transaction.trans_type.blank?
-		= Transaction::TransTypes::NAMES[@transaction.trans_type]
-		= @transaction.company.ticker + " - " + @transaction.company.name if @transaction.company 
+	- if !@holding.trans_type.blank?
+		= holding::TransTypes::NAMES[@holding.trans_type]
+		= @holding.company.ticker + " - " + @holding.company.name if @holding.company 
 	- else
-		Transaction
+		holding
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Trans date:
 		.col-sm-4
-			= @transaction.trans_date.strftime("%d-%b-%Y") if @transaction.trans_date
+			= @holding.trans_date.strftime("%d-%b-%Y") if @holding.trans_date
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Quantity:
 		.col-sm-4
-			= @transaction.quantity
+			= @holding.quantity
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Price:
 		.col-sm-4
-			= @transaction.currency_format(@transaction.price)
-			-#p
+			= @holding.price
+			p
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Consideration:
 		.col-sm-4
 			&pound;
-			= @transaction.consideration
+			= @holding.consideration
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Commission:
 		.col-sm-4
 			&pound;
-			= @transaction.commission 
+			= @holding.commission 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Stamp Duty:
 		.col-sm-4
 			&pound;
-			= @transaction.stamp_duty 
+			= @holding.stamp_duty 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 PTM_levy:
 		.col-sm-4
 			&pound;
-			= @transaction.PTM_levy 
+			= @holding.PTM_levy 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Payable:
 		.col-sm-4
 			&pound;
-			= @transaction.total_cost 
+			= @holding.total_cost 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Cost Percent:
 		.col-sm-4
-			= format("%.2f", @transaction.percent_cost).to_s
+			= format("%.2f", @holding.percent_cost).to_s
 			\%
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Bargin Ref:
 		.col-sm-4
-			= @transaction.bargin_ref 
+			= @holding.bargin_ref 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Average Cost:
 		.col-sm-4
-			= format("%.2f p", @transaction.avg_cost)
+			= format("%.2f p", @holding.avg_cost)
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Buy Limit:
 		.col-sm-4
-			= @transaction.buy_limit
+			= @holding.buy_limit
 			p
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Currency:
 		.col-sm-4
-			= Transaction::TransCurrency::NAMES[@transaction.currency]
+			= @holding.currency 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Exchange Rate:
 		.col-sm-4
-			= @transaction.x_rate 
+			= @holding.x_rate 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Ex-dividend Date:
 		.col-sm-4
-			= @transaction.ex_div_date 
+			= @holding.ex_div_date 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Payment Date:
 		.col-sm-4
-			= @transaction.payment_date 
+			= @holding.payment_date 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Issue Date:
 		.col-sm-4
-			= @transaction.issue_date 
+			= @holding.issue_date 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Dividend Price:
 		.col-sm-4
-			= @transaction.div_price 
+			= @holding.div_price 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Dividend Net Total:
 		.col-sm-4
-			= @transaction.div_net_total 
+			= @holding.div_net_total 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Person (director etc?):
 		/ Needs to change to id link to people table
 		.col-sm-4
-			= @transaction.person 
+			= @holding.person 
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 User:
 		.col-sm-4
-			= @transaction.user.name if @transaction.user
+			= @holding.user.name if @holding.user
 
 
-= link_to 'Edit', edit_transaction_path(@transaction)
+= link_to 'Edit', edit_holding_path(@holding)
 |
-= link_to 'Index', transactions_path
+= link_to 'Index', holdings_path

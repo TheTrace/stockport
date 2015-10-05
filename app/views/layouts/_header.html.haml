@@ -14,6 +14,7 @@
 				%ul.nav.navbar-nav
 					%li{ :class => "#{params[:controller].eql?("companies") ? "active" : ""}" }= link_to "Home", '/'
 					%li{ :class => "#{params[:controller].eql?("transactions") ? "active" : ""}" }= link_to "Transactions", :transactions
+					%li{ :class => "#{params[:controller].eql?("holdings") ? "active" : ""}" }= link_to "Holdings", :holdings
 					%li.dropdown
 						%a.dropdown-toggle{ :href => "#", :"data-toggle" => "dropdown" }
 							Admin
