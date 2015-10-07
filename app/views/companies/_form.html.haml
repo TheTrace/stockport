@@ -30,20 +30,22 @@
 			= f.text_area :reference, :class => "form-control", :rows => "5"
 
 	.form-group
-		= f.label :currency, :class => "control-label col-sm-2"
-		.col-sm-5
-			-#= f.text_field :currency, :class => "form-control"
-			= f.select :currency, options_for_select(Transaction::TransCurrency.for_select, @company.currency), {}, :class => "form-control"
-
-	.form-group
 		= f.label :country, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.text_field :country, :class => "form-control"
+			-#= f.text_field :country, :class => "form-control"
+			= f.select :country, options_for_select(Company::Country.for_select, @company.country), {}, :class => "form-control"
 
 	.form-group
 		= f.label :bourse, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.text_field :bourse, :class => "form-control"
+			-#= f.text_field :bourse, :class => "form-control"
+			= f.select :bourse, options_for_select(Company::Bourse.for_select, @company.bourse), {}, :class => "form-control"
+
+	.form-group
+		= f.label :currency, :class => "control-label col-sm-2"
+		.col-sm-5
+			-#= f.text_field :currency, :class => "form-control"
+			= f.select :currency, options_for_select(Transaction::TransCurrency.for_select, @company.currency), {}, :class => "form-control"
 
 	.form-group
 		= f.label :sector, :class => "control-label col-sm-2"

@@ -33,12 +33,12 @@
 					%span.label{ :class => "#{t_class}"}= Transaction::TransTypes::NAMES[transaction.trans_type]
 				%td.text-right= transaction.quantity
 				- if transaction.trans_type.eql?(Transaction::TransTypes::BUY)
-					%td.text-right= transaction.price.to_s + " p"
+					%td.text-right= transaction.currency_format(transaction.price)
 					%td.text-right.text-danger= format("&pound; %.2f", transaction.total_cost).html_safe
 					%td.text-right= format("%.2f p", transaction.avg_cost)
 					%td.text-right= format("%.2f", transaction.percent_cost).to_s + "%"
 				- else
-					%td.text-right= transaction.div_price.to_s + " p"
+					%td.text-right= transaction.currency_format(transaction.price)
 					%td.text-right= format("&pound; %.2f", transaction.div_net_total).html_safe
 					%td.text-right= format("%.2f p", transaction.avg_cost)
 					%td.text-right= format("%.2f", transaction.percent_cost).to_s + "%"
