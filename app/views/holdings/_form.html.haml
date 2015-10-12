@@ -10,114 +10,31 @@
 					%li= msg
 
 	.form-group
-		= f.label :trans_type, :class => "control-label col-sm-2"
-		.col-sm-5
-			= f.select :trans_type, options_for_select(holding::TransTypes.for_select, @holding.trans_type), {}, :class => "form-control"
-
-	.form-group
-		= f.label :trans_date, :class => "control-label col-sm-2"
-		.col-sm-5
-			= f.date_select :trans_date, :class => "form-control"
-
-	.form-group
 		= f.label :company_id, :class => "control-label col-sm-2"
 		.col-sm-5
 			= f.select :company_id, options_for_select([["Please select...",""]]+Company.for_select, @holding.company_id), {}, :class => "form-control"
 
 	.form-group
-		= f.label :quantity, :class => "control-label col-sm-2"
+		= f.label :book_value, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :quantity, :class => "form-control"
+			= f.number_field :book_value, :class => "form-control"
 
 	.form-group
-		= f.label :price, :class => "control-label col-sm-2"
+		= f.label :opened_at, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :price, :class => "form-control", :step => "any"
+			= f.date_select :opened_at, :class => "form-control"
 
 	.form-group
-		= f.label :consideration, :class => "control-label col-sm-2"
+		= f.label :closed_at, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :consideration, :class => "form-control", :step => "any"
+			= f.date_select :closed_at, :class => "form-control"
 
-	.form-group
-		= f.label :commission, :class => "control-label col-sm-2"
-		.col-sm-5
-			= f.number_field :commission, :class => "form-control", :step => "any"
-
-	.form-group
-		= f.label :stamp_duty, :class => "control-label col-sm-2"
-		.col-sm-5
-			= f.number_field :stamp_duty, :class => "form-control", :step => "any"
-
-	.form-group
-		= f.label :PTM_levy, :class => "control-label col-sm-2"
-		.col-sm-5
-			= f.number_field :PTM_levy, :class => "form-control", :step => "any"
-
-	.form-group
-		= f.label :bargin_ref, :class => "control-label col-sm-2"
-		.col-sm-5
-			= f.text_field :bargin_ref, :class => "form-control"
-
-	.form-group
-		= f.label :buy_limit, :class => "control-label col-sm-2"
-		.col-sm-5
-			= f.number_field :buy_limit, :class => "form-control", :step => "any"
-
-	.form-group
-		= f.label :currency, :class => "control-label col-sm-2"
-		.col-sm-5
-			-#= f.text_field :currency, :class => "form-control"
-			= f.select :currency, options_for_select(holding::TransCurrency.for_select, @holding.currency), {}, :class => "form-control"
-
-	.form-group
-		= f.label :x_rate, :class => "control-label col-sm-2"
-		.col-sm-5
-			= f.number_field :x_rate, :class => "form-control", :step => "any"
-
-	.form-group
-		= f.label :ex_div_date, :class => "control-label col-sm-2"
-		.col-sm-5
-			= f.date_select :ex_div_date, :class => "form-control"
-
-	.form-group
-		= f.label :payment_date, :class => "control-label col-sm-2"
-		.col-sm-5
-			= f.date_select :payment_date, :class => "form-control"
-
-	.form-group
-		= f.label :issue_date, :class => "control-label col-sm-2"
-		.col-sm-5
-			= f.date_select :issue_date, :class => "form-control"
-
-	.form-group
-		= f.label :div_price, :class => "control-label col-sm-2"
-		.col-sm-5
-			= f.number_field :div_price, :class => "form-control", :step => "any"
-
-	.form-group
-		= f.label :div_net_total, :class => "control-label col-sm-2"
-		.col-sm-5
-			= f.number_field :div_net_total, :class => "form-control", :step => "any"
-
-	.form-group
-		= f.label :person, :class => "control-label col-sm-2"
-		.col-sm-5
-			= f.number_field :person, :class => "form-control"
-
-	.form-group
-		= f.label :holding_id, :class => "control-label col-sm-2"
-		.col-sm-5
-			-# if @holding.user
+	-#.form-group
+		-#= f.label :user_id, :class => "control-label col-sm-2"
+		-#.col-sm-5
+			-#if @holding.user
 				-#= f.hidden_field :user_id, :value => "#{@holding.user.id}"
-			= f.select :holding_id, options_for_select(Holding.all.map{|t|[t.company_id, t.id]}, @holding.holding_id), {}, :class => "form-control"
-
-	.form-group
-		= f.label :user_id, :class => "control-label col-sm-2"
-		.col-sm-5
-			-# if @holding.user
-				-#= f.hidden_field :user_id, :value => "#{@holding.user.id}"
-			= f.select :user_id, options_for_select(User.all.map{|t|[t.name, t.id]}, @holding.user_id), {}, :class => "form-control"
+			-#= f.select :user_id, options_for_select(User.all.map{|t|[t.name, t.id]}, @holding.user_id), {}, :class => "form-control"
 
 	.actions
 		.col-sm-offset-2

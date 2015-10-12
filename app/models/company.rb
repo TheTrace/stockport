@@ -1,5 +1,6 @@
 class Company < ActiveRecord::Base
 	has_many :transactions
+	has_many :holdings
 
 	class Bourse
 		LSE = "LSE"
