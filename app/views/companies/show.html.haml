@@ -3,7 +3,7 @@
 
 	.pull-right= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-trash'></span></button>".html_safe, @company, method: :delete, data: { confirm: 'Are you sure you want to DELETE this company?' }, :title => "Destroy"
 
-	= link_to '&laquo; Back'.html_safe, companies_path
+	= link_to '&laquo; Index'.html_safe, companies_path
 
 	%H1
 		= @company.name

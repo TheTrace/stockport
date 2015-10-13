@@ -1,11 +1,15 @@
 %p#notice= notice
 
+= link_to '&laquo; Index'.html_safe, transactions_path
+
 %h2
 	- if !@transaction.trans_type.blank?
 		= Transaction::TransTypes::NAMES[@transaction.trans_type]
 		= @transaction.company.ticker + " - " + @transaction.company.name if @transaction.company 
 	- else
 		Transaction
+
+	= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-pencil'></span></button>".html_safe, edit_transaction_path(@transaction), html = {:title => "Edit"}
 
 .form-horizontal
 	.form-group
@@ -135,6 +139,12 @@
 		/ Needs to change to id link to people table
 		.col-sm-4
 			= @transaction.person 
+
+.form-horizontal
+	.form-group
+		%strong.col-sm-3 Holding:
+		.col-sm-4
+			= @transaction.holding.company.name if @transaction.holding
 
 .form-horizontal
 	.form-group

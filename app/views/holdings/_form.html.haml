@@ -10,14 +10,29 @@
 					%li= msg
 
 	.form-group
+		= f.label :name, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_field :name, :class => "form-control"
+
+	.form-group
 		= f.label :company_id, :class => "control-label col-sm-2"
 		.col-sm-5
 			= f.select :company_id, options_for_select([["Please select...",""]]+Company.for_select, @holding.company_id), {}, :class => "form-control"
 
 	.form-group
+		= f.label :income, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.number_field :income, :step => "0.01", :class => "form-control"
+
+	.form-group
+		= f.label :expense, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.number_field :expense, :step => "0.01", :class => "form-control"
+
+	.form-group
 		= f.label :book_value, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.number_field :book_value, :class => "form-control"
+			= f.number_field :book_value, :step => "0.01", :class => "form-control"
 
 	.form-group
 		= f.label :opened_at, :class => "control-label col-sm-2"
@@ -29,12 +44,12 @@
 		.col-sm-5
 			= f.date_select :closed_at, :class => "form-control"
 
-	-#.form-group
-		-#= f.label :user_id, :class => "control-label col-sm-2"
-		-#.col-sm-5
-			-#if @holding.user
+	.form-group
+		= f.label :user_id, :class => "control-label col-sm-2"
+		.col-sm-5
+			-# if @holding.user
 				-#= f.hidden_field :user_id, :value => "#{@holding.user.id}"
-			-#= f.select :user_id, options_for_select(User.all.map{|t|[t.name, t.id]}, @holding.user_id), {}, :class => "form-control"
+			= f.select :user_id, options_for_select(User.all.map{|t|[t.name, t.id]}, @holding.user_id), {}, :class => "form-control"
 
 	.actions
 		.col-sm-offset-2

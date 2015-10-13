@@ -42,6 +42,7 @@ class HoldingsController < ApplicationController
   def update
     respond_to do |format|
       if @holding.update(holding_params)
+				@holding.calc_book_val
         format.html { redirect_to @holding, notice: 'holding was successfully updated.' }
         format.json { head :no_content }
       else
@@ -70,6 +71,6 @@ class HoldingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
 		def holding_params
-			params.require(:holding).permit(:company_id, :book_value, :opened_at, :closed_at)
+			params.require(:holding).permit(:company_id, :book_value, :opened_at, :closed_at, :name, :description, :expense, :income, :user_id)
     end
 end

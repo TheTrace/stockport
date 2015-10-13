@@ -1,146 +1,43 @@
 %p#notice= notice
 
+= link_to '&laquo; Index'.html_safe, holdings_path
+
 %h2
-	- if !@holding.trans_type.blank?
-		= holding::TransTypes::NAMES[@holding.trans_type]
-		= @holding.company.ticker + " - " + @holding.company.name if @holding.company 
-	- else
-		holding
+	= @holding.company.ticker + " - " + @holding.company.name if @holding.company 
+	= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-pencil'></span></button>".html_safe, edit_holding_path(@holding), html = {:title => "Edit"}
 
 .form-horizontal
 	.form-group
-		%strong.col-sm-3 Trans date:
+		%strong.col-sm-3 Opening date:
 		.col-sm-4
-			= @holding.trans_date.strftime("%d-%b-%Y") if @holding.trans_date
+			= @holding.opened_at.strftime("%d-%b-%Y") if @holding.opened_at
 
 .form-horizontal
 	.form-group
-		%strong.col-sm-3 Quantity:
-		.col-sm-4
-			= @holding.quantity
+		%strong.col-sm-3 Company:
+		.col-sm-5
+			= @holding.company.name if @holding.company
 
 .form-horizontal
 	.form-group
-		%strong.col-sm-3 Price:
-		.col-sm-4
-			= @holding.price
-			p
+		%strong.col-sm-3 Book Value:
+		.col-sm-5
+			= @holding.book_value
 
 .form-horizontal
 	.form-group
-		%strong.col-sm-3 Consideration:
+		%strong.col-sm-3 Closing date:
 		.col-sm-4
-			&pound;
-			= @holding.consideration
+			= @holding.closed_at.strftime("%d-%b-%Y") if @holding.closed_at
 
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Commission:
-		.col-sm-4
-			&pound;
-			= @holding.commission 
 
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Stamp Duty:
-		.col-sm-4
-			&pound;
-			= @holding.stamp_duty 
+-#.form-horizontal
+	-#.form-group
+		-#%strong.col-sm-3 User:
+		-#.col-sm-5
+			-#if @holding.user
+				-#= @holding.user.name
 
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 PTM_levy:
-		.col-sm-4
-			&pound;
-			= @holding.PTM_levy 
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Payable:
-		.col-sm-4
-			&pound;
-			= @holding.total_cost 
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Cost Percent:
-		.col-sm-4
-			= format("%.2f", @holding.percent_cost).to_s
-			\%
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Bargin Ref:
-		.col-sm-4
-			= @holding.bargin_ref 
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Average Cost:
-		.col-sm-4
-			= format("%.2f p", @holding.avg_cost)
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Buy Limit:
-		.col-sm-4
-			= @holding.buy_limit
-			p
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Currency:
-		.col-sm-4
-			= @holding.currency 
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Exchange Rate:
-		.col-sm-4
-			= @holding.x_rate 
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Ex-dividend Date:
-		.col-sm-4
-			= @holding.ex_div_date 
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Payment Date:
-		.col-sm-4
-			= @holding.payment_date 
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Issue Date:
-		.col-sm-4
-			= @holding.issue_date 
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Dividend Price:
-		.col-sm-4
-			= @holding.div_price 
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Dividend Net Total:
-		.col-sm-4
-			= @holding.div_net_total 
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Person (director etc?):
-		/ Needs to change to id link to people table
-		.col-sm-4
-			= @holding.person 
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 User:
-		.col-sm-4
-			= @holding.user.name if @holding.user
 
 
 = link_to 'Edit', edit_holding_path(@holding)

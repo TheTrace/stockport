@@ -136,14 +136,18 @@ Things I need...
 - be able to see capital gains AND dividend income
 - sort transactions index by company (not just it's id')
 
-# April 2015
+# Oct 2015
 Need to:
-Add "Name" to holding, maybe description too
-Add select_for for holding
-Add all the framework for holding (CRUD)
+- Might need more details in transaction for dividends (income/expense broken down for holdings)
 
 Done:
 Remove calculated fields like:
 - Payable
 - Cost Percent
 - Avg Cost
+Add "Name" to holding, maybe "Description" too
+Add "User" to holding
+Add select_for for holding
+Add total_expense to holding
+Add total_income (maybe get rid of/or automatically update book_val) to holding
+Add all the framework for holding (CRUD)
