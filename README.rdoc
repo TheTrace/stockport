@@ -139,6 +139,11 @@ Things I need...
 # Oct 2015
 Need to:
 - Might need more details in transaction for dividends (income/expense broken down for holdings)
+	- need Tax Rate (e.g. 10%)
+	- need Tax Credit
+	- need Gross Dividend (= Net Dividend Paid + Tax Credit)
+- Need to set currency as part of the company model - related to country (& bourse)
+
 
 Done:
 Remove calculated fields like:

@@ -60,7 +60,11 @@
 
 .form-horizontal
 	.form-group
-		%strong.col-sm-3 Payable:
+		%strong.col-sm-3
+			- if @transaction.trans_type.eql?(Transaction::TransTypes::BUY)
+				Payable:
+			- else
+				Receivable:
 		.col-sm-4
 			&pound;
 			= @transaction.total_cost 

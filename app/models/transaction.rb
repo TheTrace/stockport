@@ -47,9 +47,15 @@ class Transaction < ActiveRecord::Base
   end
   
   def total_cost
+		# This is money in if it's a dividend or sell -> so take expenses off
     tc = 0.00
     tc += consideration if !consideration.blank?
-    tc += expenses
+		if trans_type.eql?(TransTypes::BUY)
+    	tc += expenses
+		else
+			tc -= expenses
+		end
+		tc
   end
   
   def avg_cost

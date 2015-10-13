@@ -7,6 +7,8 @@
 		%tr
 			%th Opening Date
 			%th Company
+			%th.text-right Income
+			%th.text-right Expense
 			%th.text-right Book Value
 			%th Closing Date
 			%th
@@ -19,6 +21,10 @@
 				%td
 					= link_to holding.company.ticker, holding.company
 					= " - " + holding.company.name if holding.company
+				%td.text-right
+					= holding.income
+				%td.text-right
+					= holding.expense
 				%td.text-right
 					-#.text-right= transaction.currency_format(transaction.price)
 					= holding.book_value
@@ -45,6 +51,11 @@
 									%span.label{ :class => "#{t_class}"}= Transaction::TransTypes::NAMES[trans.trans_type]
 								%td.text-right= trans.quantity
 								- if trans.trans_type.eql?(Transaction::TransTypes::BUY)
+									%td.text-right= trans.currency_format(trans.price)
+									%td.text-right.text-danger= format("&pound; %.2f", trans.total_cost).html_safe
+									%td.text-right= format("%.2f p", trans.avg_cost)
+									%td.text-right= format("%.2f", trans.percent_cost).to_s + "%"
+								- elsif trans.trans_type.eql?(Transaction::TransTypes::SELL)
 									%td.text-right= trans.currency_format(trans.price)
 									%td.text-right.text-danger= format("&pound; %.2f", trans.total_cost).html_safe
 									%td.text-right= format("%.2f p", trans.avg_cost)

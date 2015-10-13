@@ -37,6 +37,11 @@
 					%td.text-right.text-danger= format("&pound; %.2f", transaction.total_cost).html_safe
 					%td.text-right= format("%.2f p", transaction.avg_cost)
 					%td.text-right= format("%.2f", transaction.percent_cost).to_s + "%"
+				- elsif transaction.trans_type.eql?(Transaction::TransTypes::SELL)
+					%td.text-right= transaction.currency_format(transaction.price)
+					%td.text-right.text-primary= format("&pound; %.2f", transaction.total_cost).html_safe
+					%td.text-right= format("%.2f p", transaction.avg_cost)
+					%td.text-right= format("%.2f", transaction.percent_cost).to_s + "%"
 				- else
 					%td.text-right= transaction.currency_format(transaction.price)
 					%td.text-right= format("&pound; %.2f", transaction.div_net_total).html_safe
