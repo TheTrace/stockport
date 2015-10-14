@@ -51,7 +51,8 @@
 				-#%td= transaction.percent_cost.to_s + "%"
 				-#%td= transaction.total_cost * 100 / transaction.quantity
 				-#%td= (transaction.expenses * 100 / transaction.total_cost).to_s + " %"
-				%td= link_to "<button type='button' class='btn btn-default btn-xs pull-right'><span class='glyphicon glyphicon-eye-open'></span></button>".html_safe, transaction, html = {:title => "Show"}
+				- cls = transaction.holding_id.nil? ? " red-eye" : ""
+				%td= link_to "<button type='button' class='btn btn-default btn-xs pull-right#{ cls }'><span class='glyphicon glyphicon-eye-open'></span></button>".html_safe, transaction, html = {:title => "Show"}
 
 				-#%td= link_to 'Show', transaction
 				-#%td= link_to 'Edit', edit_transaction_path(transaction)

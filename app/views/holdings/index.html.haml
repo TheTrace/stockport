@@ -70,6 +70,7 @@
 								-#%td= trans.total_cost * 100 / trans.quantity
 								-#%td= (trans.expenses * 100 / trans.total_cost).to_s + " %"
 								%td= link_to "<button type='button' class='btn btn-default btn-xs pull-right'><span class='glyphicon glyphicon-eye-open'></span></button>".html_safe, trans, html = {:title => "Show"}
+				%td
 
 %br
 
