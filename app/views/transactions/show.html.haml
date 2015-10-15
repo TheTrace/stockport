@@ -1,6 +1,8 @@
 %p#notice= notice
 
 = link_to '&laquo; Index'.html_safe, transactions_path
+|
+= link_to 'New Transaction', new_transaction_path
 
 %h2
 	- if !@transaction.trans_type.blank?

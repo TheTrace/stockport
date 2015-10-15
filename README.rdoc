@@ -143,6 +143,9 @@ Need to:
 	- need Tax Credit
 	- need Gross Dividend (= Net Dividend Paid + Tax Credit)
 - Need to set currency as part of the company model - related to country (& bourse)
+- Default country, bourse, currency based on one or the other of these things
+- When creating a transaction, can default some stuff based on the stock selected
+- need to do list of transactions as an include (for index and for holdings) - use options as to what to show (don't need the company as a sub-set of the holding)
 
 
 Done:
