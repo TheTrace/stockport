@@ -110,7 +110,7 @@
 		.col-sm-5
 			-# if @transaction.user
 				-#= f.hidden_field :user_id, :value => "#{@transaction.user.id}"
-			= f.select :holding_id, options_for_select(Holding.all.map{|t|[t.company.ticker + " - " + t.name.to_s, t.id]}, @transaction.holding_id), {}, :class => "form-control"
+			= f.select :holding_id, options_for_select(Holding.order(:name).all.map{|t|[t.company.ticker + " - " + t.name.to_s, t.id]}, @transaction.holding_id), {}, :class => "form-control"
 			-# I think I'll need to .join Holding and Company and then .order by .company_name
 
 	.form-group

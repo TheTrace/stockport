@@ -1,0 +1,62 @@
+- list ||= @transactions
+- show_header ||= false
+- include_name ||= false
+
+- if list.any?
+	%table.table
+		- if show_header
+			%thead
+				%tr
+					%th Trans date
+					- if include_name
+						%th Company
+					%th Trans type
+					%th.text-right Quantity
+					%th.text-right Price
+					%th.text-right &pound; Total
+					%th.text-right Avg Cost
+					%th.text-right % Cost
+					%th
+
+		%tbody
+			- list.each do |transaction|
+				- tt_div = transaction.trans_type.eql?(Transaction::TransTypes::DIVIDEND)
+				- tt_buy = transaction.trans_type.eql?(Transaction::TransTypes::BUY)
+				- tt_sell = transaction.trans_type.eql?(Transaction::TransTypes::SELL)
+				%tr{ :class => "#{'success' if tt_div}" }
+					%td= transaction.trans_date.strftime("%d-%b-%Y") if transaction.trans_date
+					- if include_name
+						%td
+							= link_to transaction.company.ticker, transaction.company
+							= " - " + transaction.company.name if transaction.company
+					%td
+						- t_class = 'label-success' if tt_div
+						- t_class = 'label-default' if tt_buy
+						- t_class = 'label-primary' if tt_sell
+						%span.label{ :class => "#{t_class}"}= Transaction::TransTypes::NAMES[transaction.trans_type]
+					%td.text-right= transaction.quantity
+					- if transaction.trans_type.eql?(Transaction::TransTypes::BUY)
+						%td.text-right= transaction.currency_format(transaction.price)
+						%td.text-right.text-danger= format("&pound; %.2f", transaction.total_cost).html_safe
+						%td.text-right= format("%.2f p", transaction.avg_cost)
+						%td.text-right= format("%.2f", transaction.percent_cost).to_s + "%"
+					- elsif transaction.trans_type.eql?(Transaction::TransTypes::SELL)
+						%td.text-right= transaction.currency_format(transaction.price)
+						%td.text-right.text-primary= format("&pound; %.2f", transaction.total_cost).html_safe
+						%td.text-right= format("%.2f p", transaction.avg_cost) if not transaction.avg_cost.eql?(0.0)
+						%td.text-right= format("%.2f", transaction.percent_cost).to_s + "%"
+					- else
+						%td.text-right= transaction.currency_format(transaction.price)
+						%td.text-right= format("&pound; %.2f", transaction.div_net_total).html_safe
+						%td.text-right= format("%.2f p", transaction.avg_cost) if not transaction.avg_cost.eql?(0.0)
+						%td.text-right= format("%.2f", transaction.percent_cost).to_s + "%"
+
+					-#%td= transaction.percent_cost.to_s + "%"
+					-#%td= transaction.total_cost * 100 / transaction.quantity
+					-#%td= (transaction.expenses * 100 / transaction.total_cost).to_s + " %"
+					- cls = transaction.holding_id.nil? ? " red-eye" : ""
+					%td= link_to "<button type='button' class='btn btn-default btn-xs pull-right#{ cls }'><span class='glyphicon glyphicon-eye-open'></span></button>".html_safe, transaction, html = {:title => "Show"}
+
+					-#%td= link_to 'Show', transaction
+					-#%td= link_to 'Edit', edit_transaction_path(transaction)
+					-#%td= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' }

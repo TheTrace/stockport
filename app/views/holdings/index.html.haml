@@ -22,11 +22,14 @@
 					= link_to holding.company.ticker, holding.company
 					= " - " + holding.company.name if holding.company
 				%td.text-right
+					&pound;
 					= holding.income
 				%td.text-right
+					&pound;
 					= holding.expense
 				%td.text-right
 					-#.text-right= transaction.currency_format(transaction.price)
+					&pound;
 					= holding.book_value
 				%td
 					= holding.closed_at.strftime("%d-%b-%Y") if holding.closed_at
@@ -34,42 +37,7 @@
 			%tr
 				%td
 				%td{ :colspan => "5" }
-					%table{ :width => "100%" }
-						- holding.transactions.order(:trans_date).each do |trans|
-							- tt_div = trans.trans_type.eql?(Transaction::TransTypes::DIVIDEND)
-							- tt_buy = trans.trans_type.eql?(Transaction::TransTypes::BUY)
-							- tt_sell = trans.trans_type.eql?(Transaction::TransTypes::SELL)
-							%tr{ :class => "#{'success' if tt_div}" }
-								%td= trans.trans_date.strftime("%d-%b-%Y") if trans.trans_date
-								%td
-									= link_to trans.company.ticker, trans.company
-									= " - " + trans.company.name if trans.company
-								%td
-									- t_class = 'label-success' if tt_div
-									- t_class = 'label-default' if tt_buy
-									- t_class = 'label-primary' if tt_sell
-									%span.label{ :class => "#{t_class}"}= Transaction::TransTypes::NAMES[trans.trans_type]
-								%td.text-right= trans.quantity
-								- if trans.trans_type.eql?(Transaction::TransTypes::BUY)
-									%td.text-right= trans.currency_format(trans.price)
-									%td.text-right.text-danger= format("&pound; %.2f", trans.total_cost).html_safe
-									%td.text-right= format("%.2f p", trans.avg_cost)
-									%td.text-right= format("%.2f", trans.percent_cost).to_s + "%"
-								- elsif trans.trans_type.eql?(Transaction::TransTypes::SELL)
-									%td.text-right= trans.currency_format(trans.price)
-									%td.text-right.text-danger= format("&pound; %.2f", trans.total_cost).html_safe
-									%td.text-right= format("%.2f p", trans.avg_cost)
-									%td.text-right= format("%.2f", trans.percent_cost).to_s + "%"
-								- else
-									%td.text-right= trans.currency_format(trans.price)
-									%td.text-right= format("&pound; %.2f", trans.div_net_total).html_safe
-									%td.text-right= format("%.2f p", trans.avg_cost)
-									%td.text-right= format("%.2f", trans.percent_cost).to_s + "%"
-
-								-#%td= trans.percent_cost.to_s + "%"
-								-#%td= trans.total_cost * 100 / trans.quantity
-								-#%td= (trans.expenses * 100 / trans.total_cost).to_s + " %"
-								%td= link_to "<button type='button' class='btn btn-default btn-xs pull-right'><span class='glyphicon glyphicon-eye-open'></span></button>".html_safe, trans, html = {:title => "Show"}
+					= render :partial => "transactions/list", :object => holding.transactions.order(:trans_date)
 				%td
 
 %br

@@ -141,7 +141,7 @@ Need to:
 - Might need more details in transaction for dividends (income/expense broken down for holdings)
 	- need Tax Rate (e.g. 10%)
 	- need Tax Credit
-	- need Gross Dividend (= Net Dividend Paid + Tax Credit)
+	- need Gross Dividend (= Net Dividend Paid + Tax Credit) -> calculated value
 - Need to set currency as part of the company model - related to country (& bourse)
 - Default country, bourse, currency based on one or the other of these things
 - When creating a transaction, can default some stuff based on the stock selected
