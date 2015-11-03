@@ -10,6 +10,7 @@
 			%th.text-right Income
 			%th.text-right Expense
 			%th.text-right Book Value
+			%th.text-right %
 			%th Closing Date
 			%th
 
@@ -31,12 +32,14 @@
 					-#.text-right= transaction.currency_format(transaction.price)
 					&pound;
 					= holding.book_value
+				%td.text-right{ :class => "#{ holding.book_value > 0 ? 'text-success' : 'text-danger' }" }
+					= format("%.2f %", (holding.book_value * 100) / holding.expense)
 				%td
-					= holding.closed_at.strftime("%d-%b-%Y") if holding.closed_at
+					= holding.closed_at.strftime("%d-%b-%Y") if holding.closed_at && holding.closed_at > holding.opened_at
 				%td= link_to "<button type='button' class='btn btn-default btn-xs pull-right'><span class='glyphicon glyphicon-eye-open'></span></button>".html_safe, holding, html = {:title => "Show"}
 			%tr
 				%td
-				%td{ :colspan => "5" }
+				%td{ :colspan => "6" }
 					= render :partial => "transactions/list", :object => holding.transactions.order(:trans_date)
 				%td
 
