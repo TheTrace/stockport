@@ -3,7 +3,7 @@ class HoldingsController < ApplicationController
 
 
 	def index
-		@holdings = Holding.order('company_id,opened_at').all
+		@holdings = Holding.order('opened_at,company_id').all
   end
 
   # GET /holdings/1
