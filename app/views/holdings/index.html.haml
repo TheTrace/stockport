@@ -23,15 +23,12 @@
 					= link_to holding.company.ticker, holding.company
 					= " - " + holding.company.name if holding.company
 				%td.text-right
-					&pound;
-					= holding.income
+					= format("&pound; %.2f", holding.income).html_safe
 				%td.text-right
-					&pound;
-					= holding.expense
-				%td.text-right
+					= format("&pound; %.2f", holding.expense).html_safe
+				%td.text-right{ :class => "#{ holding.book_value > 0 ? 'text-success' : 'text-danger' }" }
 					-#.text-right= transaction.currency_format(transaction.price)
-					&pound;
-					= holding.book_value
+					= format("&pound; %.2f", holding.book_value).html_safe
 				%td.text-right{ :class => "#{ holding.book_value > 0 ? 'text-success' : 'text-danger' }" }
 					= format("%.2f %", (holding.book_value * 100) / holding.expense)
 				%td

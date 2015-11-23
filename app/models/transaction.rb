@@ -77,9 +77,9 @@ class Transaction < ActiveRecord::Base
 	def currency_format(val)
 		if not val.blank?
 			if self.currency.eql?(TransCurrency::USD)
-				return "$ " + val.to_s
+				return format("$ %.2f", val)
 			else
-				return val.to_s + " p"
+				return format("%.2f p", val)
 			end
 		else
 			return ""
