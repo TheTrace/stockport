@@ -68,8 +68,7 @@
 			- else
 				Receivable:
 		.col-sm-4
-			&pound;
-			= @transaction.total_cost 
+			= format("&pound; %.2f", @transaction.total_cost).html_safe
 
 .form-horizontal
 	.form-group
@@ -113,19 +112,19 @@
 	.form-group
 		%strong.col-sm-3 Ex-dividend Date:
 		.col-sm-4
-			= @transaction.ex_div_date 
+			= @transaction.ex_div_date.strftime("%d-%b-%Y") if @transaction.ex_div_date
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Payment Date:
 		.col-sm-4
-			= @transaction.payment_date 
+			= @transaction.payment_date.strftime("%d-%b-%Y") if @transaction.payment_date
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Issue Date:
 		.col-sm-4
-			= @transaction.issue_date 
+			= @transaction.issue_date.strftime("%d-%b-%Y") if @transaction.payment_date
 
 .form-horizontal
 	.form-group
@@ -137,7 +136,7 @@
 	.form-group
 		%strong.col-sm-3 Dividend Net Total:
 		.col-sm-4
-			= @transaction.div_net_total 
+			= format("&pound; %.2f", @transaction.div_net_total).html_safe if @transaction.div_net_total
 
 .form-horizontal
 	.form-group

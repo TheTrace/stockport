@@ -5,9 +5,11 @@ cf http://gionkunz.github.io/chartist-js/
 
 # Web Services:
 Webservicex.net and Restfulwebservices.net
-http://www.webservicex.net/WS/WSDetails.aspx?CATID=2&WSID=9
 http://download.finance.yahoo.com/d/quotes.csv?s=ABF.L,ADN.L,APF.L,AUE.L,BA.L,BARC.L,BLNX.L,BLT.L,BND,BP.L,BRBY.L,BRK-B,CCH.L,CCL.L,CEO.L,DMGT.L,DNLM.L,EBAY,FGP.L,GFS.L,GKN.L,KO,LLOY.L,LTC.L,MKL,MONI.L,NANO.L,NG.L,OCG.L,OMG.L,PFC.L,PHTM.L,PZC.L,QED.L,RDSB.L,RIO.L,RR.L,SDL.L,SMP,TED.L,TEP.L,VEU,VOD.L,VOO,WCW.L,&f=sl1d1t1c1ohgv&e=.csv
+
 http://ws.cdyne.com/delayedstockquote/delayedstockquote.asmx
+http://www.webservicex.net/WS/WSDetails.aspx?CATID=2&WSID=9
+
 YQL console (Yahoo Query Language)
 
 * Database creation
@@ -16,8 +18,8 @@ Company
 - ticker
 - description
 - reference (recommended by sources, highs/lows, etc)
-- currency?
-- country?
+- currency (default based on Country)
+- country (default based on bourse)
 - bourse
 - sector (industry)
 - year incorporated? (change to number - not date - DONE)
@@ -28,6 +30,8 @@ Company
 - share type
 - beta (or just in snapshot?)
 - Logo (image)
+*** Add?
+- Address
 
 
 Transactions
@@ -61,11 +65,19 @@ People (Directors etc)
 - name_last
 - image
 - contact (email, address, phone)
+- nationality
+- description / background
 
 Positions
 - Company
 - Person
-- position
+- position1 (President)
+- position2 (Global Manufacturing & Supply)
+- day of birth
+- month of birth
+- year of birth
+- age
+- date age entered (i.e. age at this date was x -> could work out year of birth[ish])
 - date start
 - date end
 - salary
@@ -134,7 +146,7 @@ Historical Prices (from Yahoo!)
 Things I need...
 - view by timeline as to when stock was bought, high/low whilst I've had it and percentages over time
 - be able to see capital gains AND dividend income
-- sort transactions index by company (not just it's id')
+- sort transactions index by company (not just it's 'id')
 
 # Oct 2015
 Need to:
