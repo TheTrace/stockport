@@ -159,6 +159,11 @@ Need to:
 - When creating a transaction, can default some stuff based on the stock selected
 - need to do list of transactions as an include (for index and for holdings) - use options as to what to show (don't need the company as a sub-set of the holding)
 
+# Nov 2015
+- Put the stock value etc from controller into the company - could YHOO cope with multiple?  maybe there's a batch way to do it?
+- In holdings add the stock value currently (what if scenario for sold ones) - i.e. current price x number of shares held (need way of knowing that)
+- Want to add £5 expenses to expenses and not take them off incomes until required
+- Make holdings expandable - i.e. hide the details of transactions 'til clicked on
 
 Done:
 Remove calculated fields like:
