@@ -8,14 +8,16 @@ class Holding < ActiveRecord::Base
 		val_exp = 0.00
 		self.transactions.order(:trans_date).each do |t|
 			#print t.total_cost.to_s + " cost\n"
+			val_exp += t.expenses
 			if t.trans_type.eql?(Transaction::TransTypes::SELL)
-				val_in += t.total_cost
+				val_in += t.consideration if !t.consideration.blank?
 			elsif t.trans_type.eql?(Transaction::TransTypes::DIVIDEND)
 				val_in += t.div_net_total
 			else
-				val_exp += t.total_cost
+				val_exp += t.consideration if !t.consideration.blank?
 			end
-			#print val.to_s + "\n"
+			print val_in.to_s + "\n"
+			print val_exp.to_s + "\n"
 		end
 		# eventually just return "val"
 		#self.book_value = val

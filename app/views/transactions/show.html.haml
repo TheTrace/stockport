@@ -36,29 +36,25 @@
 	.form-group
 		%strong.col-sm-3 Consideration:
 		.col-sm-4
-			&pound;
-			= @transaction.consideration
+			= format("&pound; %.2f", @transaction.consideration).html_safe
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Commission:
 		.col-sm-4
-			&pound;
-			= @transaction.commission 
+			= format("&pound; %.2f", @transaction.commission).html_safe if !@transaction.commission.blank?
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Stamp Duty:
 		.col-sm-4
-			&pound;
-			= @transaction.stamp_duty 
+			= format("&pound; %.2f", @transaction.stamp_duty).html_safe if !@transaction.stamp_duty.blank?
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 PTM_levy:
 		.col-sm-4
-			&pound;
-			= @transaction.PTM_levy 
+			= format("&pound; %.2f", @transaction.PTM_levy).html_safe if !@transaction.PTM_levy.blank?
 
 .form-horizontal
 	.form-group
@@ -68,7 +64,7 @@
 			- else
 				Receivable:
 		.col-sm-4
-			= format("&pound; %.2f", @transaction.total_cost).html_safe
+			= format("&pound; %.2f", @transaction.total_cost).html_safe if !@transaction.total_cost.blank?
 
 .form-horizontal
 	.form-group
@@ -87,14 +83,13 @@
 	.form-group
 		%strong.col-sm-3 Average Cost:
 		.col-sm-4
-			= format("%.2f p", @transaction.avg_cost)
+			= format("%.2f p", @transaction.avg_cost).html_safe
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Buy Limit:
 		.col-sm-4
-			= @transaction.buy_limit
-			p
+			= format("%.2f p", @transaction.buy_limit).html_safe if !@transaction.buy_limit.blank?
 
 .form-horizontal
 	.form-group
