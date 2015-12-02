@@ -1,6 +1,6 @@
 %p#notice= notice
 
-= link_to '&laquo; Index'.html_safe, transactions_path
+= link_to '&laquo; All Transactions'.html_safe, transactions_path
 |
 = link_to 'New Transaction', new_transaction_path
 
@@ -34,104 +34,134 @@
 
 .form-horizontal
 	.form-group
-		%strong.col-sm-3 Consideration:
-		.col-sm-4
-			= format("&pound; %.2f", @transaction.consideration).html_safe
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Commission:
-		.col-sm-4
-			= format("&pound; %.2f", @transaction.commission).html_safe if !@transaction.commission.blank?
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Stamp Duty:
-		.col-sm-4
-			= format("&pound; %.2f", @transaction.stamp_duty).html_safe if !@transaction.stamp_duty.blank?
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 PTM_levy:
-		.col-sm-4
-			= format("&pound; %.2f", @transaction.PTM_levy).html_safe if !@transaction.PTM_levy.blank?
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3
-			- if @transaction.trans_type.eql?(Transaction::TransTypes::BUY)
-				Payable:
-			- else
-				Receivable:
-		.col-sm-4
-			= format("&pound; %.2f", @transaction.total_cost).html_safe if !@transaction.total_cost.blank?
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Cost Percent:
-		.col-sm-4
-			= format("%.2f", @transaction.percent_cost).to_s
-			\%
-
-.form-horizontal
-	.form-group
 		%strong.col-sm-3 Bargin Ref:
 		.col-sm-4
 			= @transaction.bargin_ref 
 
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Average Cost:
-		.col-sm-4
-			= format("%.2f p", @transaction.avg_cost).html_safe
+.panel{ :class => "#{ @transaction.trans_type.eql?(Transaction::TransTypes::BUY) || @transaction.trans_type.eql?(Transaction::TransTypes::SELL) ? 'panel-primary' : 'panel-default' }"}
+	.panel-heading
+		Buy / Sell
+	.panel-body
 
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Buy Limit:
-		.col-sm-4
-			= format("%.2f p", @transaction.buy_limit).html_safe if !@transaction.buy_limit.blank?
+		.form-horizontal
+			.form-group
+				%strong.col-sm-3 Consideration:
+				.col-sm-4
+					= format("&pound; %.2f", @transaction.consideration.to_f).html_safe
 
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Currency:
-		.col-sm-4
-			= Transaction::TransCurrency::NAMES[@transaction.currency]
+		.form-horizontal
+			.form-group
+				%strong.col-sm-3 Commission:
+				.col-sm-4
+					= format("&pound; %.2f", @transaction.commission.to_f).html_safe
 
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Exchange Rate:
-		.col-sm-4
-			= @transaction.x_rate 
+		.form-horizontal
+			.form-group
+				%strong.col-sm-3 Stamp Duty:
+				.col-sm-4
+					= format("&pound; %.2f", @transaction.stamp_duty.to_f).html_safe
 
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Ex-dividend Date:
-		.col-sm-4
-			= @transaction.ex_div_date.strftime("%d-%b-%Y") if @transaction.ex_div_date
+		.form-horizontal
+			.form-group
+				%strong.col-sm-3 PTM_levy:
+				.col-sm-4
+					= format("&pound; %.2f", @transaction.PTM_levy.to_f).html_safe
 
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Payment Date:
-		.col-sm-4
-			= @transaction.payment_date.strftime("%d-%b-%Y") if @transaction.payment_date
+		.form-horizontal
+			.form-group
+				%strong.col-sm-3
+					- if @transaction.trans_type.eql?(Transaction::TransTypes::BUY)
+						Payable:
+					- else
+						Receivable:
+				.col-sm-4
+					= format("&pound; %.2f", @transaction.total_cost).html_safe if !@transaction.total_cost.blank?
 
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Issue Date:
-		.col-sm-4
-			= @transaction.issue_date.strftime("%d-%b-%Y") if @transaction.payment_date
+		.form-horizontal
+			.form-group
+				%strong.col-sm-3 Cost Percent:
+				.col-sm-4
+					= format("%.2f", @transaction.percent_cost).to_s
+					\%
 
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Dividend Price:
-		.col-sm-4
-			= @transaction.div_price 
+		.form-horizontal
+			.form-group
+				%strong.col-sm-3 Average Cost:
+				.col-sm-4
+					= format("%.2f p", @transaction.avg_cost).html_safe
 
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Dividend Net Total:
-		.col-sm-4
-			= format("&pound; %.2f", @transaction.div_net_total).html_safe if @transaction.div_net_total
+		.form-horizontal
+			.form-group
+				%strong.col-sm-3 Buy Limit:
+				.col-sm-4
+					= format("%.2f p", @transaction.buy_limit).html_safe if !@transaction.buy_limit.blank?
+
+		.form-horizontal
+			.form-group
+				%strong.col-sm-3 Currency:
+				.col-sm-4
+					= Transaction::TransCurrency::NAMES[@transaction.currency]
+
+		.form-horizontal
+			.form-group
+				%strong.col-sm-3 Exchange Rate:
+				.col-sm-4
+					= @transaction.x_rate 
+
+.panel{ :class => "#{ @transaction.trans_type.eql?(Transaction::TransTypes::DIVIDEND) ? 'panel-primary' : 'panel-default' }"}
+	.panel-heading
+		Dividends
+	.panel-body
+
+		.form-horizontal
+			.form-group
+				%strong.col-sm-3 Ex-dividend Date:
+				.col-sm-4
+					= @transaction.ex_div_date.strftime("%d-%b-%Y") if @transaction.ex_div_date
+
+		.form-horizontal
+			.form-group
+				%strong.col-sm-3 Payment Date:
+				.col-sm-4
+					= @transaction.payment_date.strftime("%d-%b-%Y") if @transaction.payment_date
+
+		.form-horizontal
+			.form-group
+				%strong.col-sm-3 Issue Date:
+				.col-sm-4
+					= @transaction.issue_date.strftime("%d-%b-%Y") if @transaction.payment_date
+
+		- curr = @transaction.currency.eql?(Transaction::TransCurrency::GBP) ? "&pound; %.2f" : "$ %.2f"
+		.form-horizontal
+			.form-group
+				%strong.col-sm-3 Dividend Price:
+				.col-sm-4
+					= format("#{curr}", @transaction.div_price).html_safe if @transaction.div_price
+
+		.form-horizontal
+			.form-group
+				%strong.col-sm-3 Dividend Gross:
+				.col-sm-4
+					= format("#{curr}", @transaction.div_gross).html_safe if @transaction.div_gross
+
+		.form-horizontal
+			.form-group
+				%strong.col-sm-3 Tax Rate:
+				.col-sm-4
+					= @transaction.div_tax_rate
+					\%
+
+		.form-horizontal
+			.form-group
+				%strong.col-sm-3 Tax Credit / Withheld:
+				.col-sm-4
+					= format("&pound; %.2f", @transaction.div_tax_credit).html_safe if @transaction.div_tax_credit 
+
+		.form-horizontal
+			.form-group
+				%strong.col-sm-3 Dividend Net Total:
+				.col-sm-4
+					= format("&pound; %.2f", @transaction.div_net_total).html_safe if @transaction.div_net_total
 
 .form-horizontal
 	.form-group
@@ -144,7 +174,7 @@
 	.form-group
 		%strong.col-sm-3 Holding:
 		.col-sm-4
-			= @transaction.holding.company.name if @transaction.holding
+			= link_to @transaction.holding.company.name, @transaction.holding if @transaction.holding
 
 .form-horizontal
 	.form-group
@@ -155,4 +185,4 @@
 
 = link_to 'Edit', edit_transaction_path(@transaction)
 |
-= link_to 'Index', transactions_path
+= link_to 'All Transactions', transactions_path

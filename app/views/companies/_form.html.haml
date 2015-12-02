@@ -53,6 +53,16 @@
 			= f.text_field :sector, :class => "form-control"
 
 	.form-group
+		= f.label :Address, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_area :address, :class => "form-control", :rows => "5"
+
+	.form-group
+		= f.label :Web_Site, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_field :www_address, :class => "form-control"
+
+	.form-group
 		= f.label :year_incorporated, :class => "control-label col-sm-2"
 		.col-sm-5
 			= f.text_field :year_inc, :class => "form-control"
@@ -66,11 +76,6 @@
 		= f.label :market_segment, :class => "control-label col-sm-2"
 		.col-sm-5
 			= f.text_field :mkt_segment, :class => "form-control"
-
-	.form-group
-		= f.label :Web_Site, :class => "control-label col-sm-2"
-		.col-sm-5
-			= f.text_field :www_address, :class => "form-control"
 
 	.form-group
 		= f.label :isin, :class => "control-label col-sm-2"

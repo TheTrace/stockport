@@ -30,7 +30,6 @@ Company
 - share type
 - beta (or just in snapshot?)
 - Logo (image)
-*** Add?
 - Address
 
 
@@ -59,7 +58,6 @@ Transactions
 - net dividend total
 - user
 - Holding (ID) -> // Have this on the edit page rather than the create page, then can filter Holding by Company (or use Ajax on entry form!)
-/**** 30-Nov-2015 *********/
 - div tax rate
 - div tax credit
 - div gross

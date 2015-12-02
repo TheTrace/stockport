@@ -12,12 +12,16 @@ class Holding < ActiveRecord::Base
 			if t.trans_type.eql?(Transaction::TransTypes::SELL)
 				val_in += t.consideration if !t.consideration.blank?
 			elsif t.trans_type.eql?(Transaction::TransTypes::DIVIDEND)
-				val_in += t.div_net_total
+				#if t.currency.eql?(Transaction::TransCurrency::GBP)
+				#	val_in += t.div_gross.blank? ? t.div_net_total : t.div_gross
+				#else
+				val_in += t.div_net_total + t.expenses
+				#end
 			else
 				val_exp += t.consideration if !t.consideration.blank?
 			end
-			print val_in.to_s + "\n"
-			print val_exp.to_s + "\n"
+			#print val_in.to_s + "\n"
+			#print val_exp.to_s + "\n"
 		end
 		# eventually just return "val"
 		#self.book_value = val

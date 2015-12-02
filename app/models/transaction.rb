@@ -39,17 +39,28 @@ class Transaction < ActiveRecord::Base
 
   def expenses
     exp = 0.00
-    exp += commission.to_f if !commission.blank?
-    exp += stamp_duty.to_f if !stamp_duty.blank?
-    exp += self.PTM_levy.to_f if !self.PTM_levy.blank?
-    #transaction.commission + transaction.stamp_duty + transaction.PTM_levy
+		if trans_type.eql?(TransTypes::BUY) || trans_type.eql?(TransTypes::SELL)
+			exp += commission.to_f if !commission.blank?
+			exp += stamp_duty.to_f if !stamp_duty.blank?
+			exp += self.PTM_levy.to_f if !self.PTM_levy.blank?
+			#transaction.commission + transaction.stamp_duty + transaction.PTM_levy
+		else
+			# Can safely(?) trust div_gross and div_net_total for UK stocks
+			#if currency.eql?(TransCurrency::GBP)
+			#	exp += div_gross.to_f - div_net_total.to_f if div_gross.to_f > 0.0
+			#else
+				exp += div_tax_credit.to_f
+			#end
+		end
     exp
   end
   
   def total_cost
-		# This is money in if it's a dividend or sell -> so take expenses off
+		# This is the "net cash flow" so "money in" or "money out" of my purse.
+		# It will be "money in" if it's a dividend or sell -> so take expenses off
     tc = 0.00
-    tc += consideration if !consideration.blank?
+		tc += consideration if !consideration.blank? && !trans_type.eql?(TransTypes::DIVIDEND)
+		tc += div_gross.to_f > 0.0 ? div_gross : div_net_total if trans_type.eql?(TransTypes::DIVIDEND)
 		if trans_type.eql?(TransTypes::BUY)
     	tc += expenses
 		else
@@ -67,11 +78,21 @@ class Transaction < ActiveRecord::Base
   end
   
   def percent_cost
-    if !expenses.blank? && !total_cost.blank? && total_cost != 0
-		  expenses * 100 / total_cost
-    else
-      0.00
-    end
+		pct = 0.0
+		if !expenses.blank?
+			if trans_type.eql?(TransTypes::BUY)
+				if !total_cost.blank? && total_cost != 0
+					pct = expenses * 100 / total_cost
+				end
+			elsif trans_type.eql?(TransTypes::SELL)
+				if !consideration.blank? && consideration != 0
+					pct = expenses * 100 / consideration
+				end
+			else
+				pct = div_gross.to_f > 0.0 ? (expenses * 100 / div_gross) : 0.0
+			end
+		end
+		pct
   end
 	
 	def currency_format(val)

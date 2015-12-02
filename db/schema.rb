@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013133946) do
+ActiveRecord::Schema.define(version: 20151201105430) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20151013133946) do
     t.string   "www_address"
     t.string   "isin"
     t.string   "share_type"
+    t.text     "address"
+    t.string   "logo"
   end
 
   create_table "holdings", force: true do |t|
@@ -51,25 +53,28 @@ ActiveRecord::Schema.define(version: 20151013133946) do
     t.date     "trans_date"
     t.integer  "company_id"
     t.integer  "quantity"
-    t.decimal  "price",         precision: 10, scale: 4
-    t.decimal  "consideration", precision: 10, scale: 4
-    t.decimal  "commission",    precision: 10, scale: 4
-    t.decimal  "stamp_duty",    precision: 10, scale: 4
-    t.decimal  "PTM_levy",      precision: 10, scale: 4
+    t.decimal  "price",          precision: 10, scale: 4
+    t.decimal  "consideration",  precision: 10, scale: 4
+    t.decimal  "commission",     precision: 10, scale: 4
+    t.decimal  "stamp_duty",     precision: 10, scale: 4
+    t.decimal  "PTM_levy",       precision: 10, scale: 4
     t.string   "bargin_ref"
-    t.decimal  "buy_limit",     precision: 10, scale: 4
+    t.decimal  "buy_limit",      precision: 10, scale: 4
     t.string   "currency"
-    t.decimal  "x_rate",        precision: 10, scale: 6
+    t.decimal  "x_rate",         precision: 10, scale: 6
     t.date     "ex_div_date"
     t.date     "payment_date"
     t.date     "issue_date"
-    t.decimal  "div_price",     precision: 10, scale: 4
-    t.decimal  "div_net_total", precision: 10, scale: 4
+    t.decimal  "div_price",      precision: 10, scale: 4
+    t.decimal  "div_net_total",  precision: 10, scale: 4
     t.text     "person"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "holding_id"
+    t.decimal  "div_tax_rate",   precision: 10, scale: 4, default: 0.0
+    t.decimal  "div_tax_credit", precision: 10, scale: 4, default: 0.0
+    t.decimal  "div_gross",      precision: 10, scale: 4, default: 0.0
   end
 
   create_table "users", force: true do |t|

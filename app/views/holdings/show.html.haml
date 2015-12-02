@@ -1,6 +1,6 @@
 %p#notice= notice
 
-= link_to '&laquo; Index'.html_safe, holdings_path
+= link_to '&laquo; All Holdings'.html_safe, holdings_path
 
 %h2
 	= @holding.name
@@ -17,37 +17,46 @@
 
 .form-horizontal
 	.form-group
+		%strong.col-sm-3 Closing date:
+		.col-sm-4
+			- if @holding.closed_at && @holding.opened_at && @holding.closed_at > @holding.opened_at
+				= @holding.closed_at.strftime("%d-%b-%Y")
+				(
+				= distance_of_time_in_words(@holding.closed_at, @holding.opened_at)
+				)
+
+.form-horizontal
+	.form-group
 		%strong.col-sm-3 Company:
 		.col-sm-5
-			= @holding.company.name if @holding.company
+			= link_to @holding.company.name, @holding.company if @holding.company
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Income:
-		.col-sm-5
+		.col-sm-5.text-success
 			&pound;
 			= @holding.income
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Expense:
-		.col-sm-5
+		.col-sm-5.text-danger
 			&pound;
 			= @holding.expense
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Book Value:
-		.col-sm-5
+		.col-sm-5{ :class => "#{ @holding.book_value > 0 ? 'text-success' : 'text-danger' }" }
 			&pound;
 			= @holding.book_value
 
 .form-horizontal
 	.form-group
-		%strong.col-sm-3 Closing date:
-		.col-sm-4
-			= @holding.closed_at.strftime("%d-%b-%Y") if @holding.closed_at
-
+		%strong.col-sm-3 % Gain / Loss
+		.col-sm-5{ :class => "#{ @holding.book_value > 0 ? 'text-success' : 'text-danger' }" }
+			= format("%.2f %", (@holding.book_value * 100) / @holding.expense)
 
 -#.form-horizontal
 	-#.form-group
@@ -57,7 +66,14 @@
 				-#= @holding.user.name
 
 
-
 = link_to 'Edit', edit_holding_path(@holding)
 |
-= link_to 'Index', holdings_path
+= link_to 'All Holdings', holdings_path
+%br
+%br
+%br
+
+.row
+	.col-md-12
+		= render :partial => "transactions/list", :object => @holding.transactions.order(:trans_date), :locals => { :show_header => true }
+

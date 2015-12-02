@@ -52,46 +52,52 @@
 			= (the_date[2] + "-" + the_date[0] + "-" + the_date[1]).to_date.strftime('%d-%b-%Y')
 			-##= price_a[1]
 
-	%p
-		%strong Sector:
-		= @company.sector
+	%dl.dl-horizontal
+		%dt Sector:
+		%dd= @company.sector
 
-	%p
-		%strong Description:
-		= @company.description
+		%dt Description:
+		%dd= @company.description.gsub(/\n/, "<br />").html_safe
 
-	%p
-		%strong Reference:
-		= @company.reference
+		%dt Reference:
+		%dd= @company.reference
 
-	%p
-		%strong Currency:
-		= Transaction::TransCurrency::NAMES[@company.currency]
+		%dt Currency:
+		%dd= Transaction::TransCurrency::NAMES[@company.currency]
 
-	%p
-		%strong Country:
-		= @company.country
+		%dt Country:
+		%dd= @company.country
 
-	%p
-		%strong Year Incorporated:
-		= @company.year_inc
+		%dt Address:
+		%dd
+			%address= @company.address.gsub(/\n/, "<br />").html_safe if !@company.address.blank?
 
-	%p
-		%strong Market Sector:
-		= @company.mkt_sector
+		%dt WWW Address:
+		%dd= link_to @company.www_address, @company.www_address, :target => "_blank" if !@company.www_address.blank?
 
-	%p
-		%strong Market Segment:
-		= @company.mkt_segment
+		%dt Year Incorporated:
+		%dd= @company.year_inc
 
-	%p
-		%strong WWW Address:
-		= link_to @company.www_address, @company.www_address, :target => "_blank" if !@company.www_address.blank?
+		%dt Market Sector:
+		%dd= @company.mkt_sector
 
-	%p
-		%strong ISIN:
-		= @company.isin
+		%dt Market Segment:
+		%dd= @company.mkt_segment
 
-	%p
-		%strong Share Type:
-		= @company.share_type
+		%dt ISIN:
+		%dd= @company.isin
+
+		%dt Share Type:
+		%dd= @company.share_type
+%br
+%br
+- if @company.holdings.any?
+	%hr
+
+	.list-group
+		%a.list-group-item.active
+			Holdings
+
+		- @company.holdings.each do |h|
+			= link_to h.name, h, :class => "list-group-item"
+
