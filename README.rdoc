@@ -12,6 +12,9 @@ http://www.webservicex.net/WS/WSDetails.aspx?CATID=2&WSID=9
 
 YQL console (Yahoo Query Language)
 
+# Page scrape
+Get the Sector Summary from the Google Finance page (https://www.google.com/finance)
+
 * Database creation
 Company
 - name
