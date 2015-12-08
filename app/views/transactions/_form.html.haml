@@ -22,11 +22,13 @@
 				= f.text_field :trans_date, :class => "form-control", :"data-format" => "dd-mmm-yyyy"
 				%span.input-group-addon
 					%span.glyphicon.glyphicon-calendar
+		
+		- td = @transaction.trans_date.blank? ? "" : "$('#datetimepicker1').data('DateTimePicker').defaultDate(\"#{ @transaction.trans_date.strftime('%d-%b-%Y') }\");"
 		:javascript
 			$(function () {
 				$('#datetimepicker1').datetimepicker();
 				$('#datetimepicker1').data("DateTimePicker").format('DD-MMM-YYYY');
-				$('#datetimepicker1').data("DateTimePicker").defaultDate('"#{@transaction.trans_date.strftime('%d-%b-%Y') if @transaction.trans_date}"');
+				#{ td }
 			});
 
 	.form-group
@@ -112,17 +114,54 @@
 			.form-group
 				= f.label :ex_div_date, :class => "control-label col-sm-2"
 				.col-sm-5
-					= f.date_select :ex_div_date, :class => "form-control"
+					-#= f.date_select :ex_div_date, :class => "form-control"
+					#dtp_exdiv.input-group.date
+						= f.text_field :ex_div_date, :class => "form-control", :"data-format" => "dd-mmm-yyyy"
+						%span.input-group-addon
+							%span.glyphicon.glyphicon-calendar
+
+				- td = @transaction.ex_div_date.blank? ? "" : "$('#dtp_exdiv').data('DateTimePicker').defaultDate(\"#{ @transaction.ex_div_date.strftime('%d-%b-%Y') }\");"
+				:javascript
+					$(function () {
+						$('#dtp_exdiv').datetimepicker();
+						$('#dtp_exdiv').data("DateTimePicker").format('DD-MMM-YYYY');
+						#{ td }
+					});
+
 
 			.form-group
 				= f.label :payment_date, :class => "control-label col-sm-2"
 				.col-sm-5
-					= f.date_select :payment_date, :class => "form-control"
+					-#= f.date_select :payment_date, :class => "form-control"
+					#dtp_pmt.input-group.date
+						= f.text_field :payment_date, :class => "form-control", :"data-format" => "dd-mmm-yyyy"
+						%span.input-group-addon
+							%span.glyphicon.glyphicon-calendar
+
+				- td = @transaction.payment_date.blank? ? "" : "$('#dtp_pmt').data('DateTimePicker').defaultDate(\"#{ @transaction.payment_date.strftime('%d-%b-%Y') }\");"
+				:javascript
+					$(function () {
+						$('#dtp_pmt').datetimepicker();
+						$('#dtp_pmt').data("DateTimePicker").format('DD-MMM-YYYY');
+						#{ td }
+					});
 
 			.form-group
 				= f.label :issue_date, :class => "control-label col-sm-2"
 				.col-sm-5
-					= f.date_select :issue_date, :class => "form-control"
+					-#= f.date_select :issue_date, :class => "form-control"
+					#dtp_issue.input-group.date
+						= f.text_field :issue_date, :class => "form-control", :"data-format" => "dd-mmm-yyyy"
+						%span.input-group-addon
+							%span.glyphicon.glyphicon-calendar
+							
+				- td = @transaction.issue_date.blank? ? "" : "$('#dtp_issue').data('DateTimePicker').defaultDate(\"#{ @transaction.issue_date.strftime('%d-%b-%Y') }\");"
+				:javascript
+					$(function () {
+						$('#dtp_issue').datetimepicker();
+						$('#dtp_issue').data("DateTimePicker").format('DD-MMM-YYYY');
+						#{ td }
+					});
 
 			.form-group
 				= f.label :div_price, :class => "control-label col-sm-2"
