@@ -9,7 +9,7 @@
 	FTSE 100
 
 - if !@companies.blank?
-	%table.table.table-striped.table-hover.table-condensed
+	%table.table
 		%thead
 			%tr
 				%th Ticker
@@ -31,18 +31,17 @@
 			- @companies.each do |co|
 				%tr
 					%td= link_to co.ticker, co
-					%td= co.www_address.blank? ? co.name : link_to( (co.name + " <span class='glyphicon glyphicon-new-window' aria-hidden='true'></span>").html_safe, co.www_address, :target => "_blank" )
+					%td= co.www_address.blank? ? co.name : link_to( co.name, co.www_address, :target => "_blank" )
 					-#%td
 						-#= co.description
-					-#%td{ :"data-toggle" => "tooltip", :"data-placement" => "top", :title => "#{ co.description }" }
-					%td
-						=# co.reference
-					%td= #Transaction::TransCurrency::NAMES[co.currency]
-					%td= #co.country
+					%td{ :"data-toggle" => "tooltip", :"data-placement" => "top", :title => "#{ co.description }" }
+						= co.reference
+					%td= Transaction::TransCurrency::NAMES[co.currency]
+					%td= co.country
 					%td= co.bourse
-					%td= #co.sector
-					%td= #co.year_inc
-					%td= #co.mkt_sector
-					%td= #co.mkt_segment
-					%td= #co.isin
-					%td= #co.share_type
+					%td= co.sector
+					%td= co.year_inc
+					%td= co.mkt_sector
+					%td= co.mkt_segment
+					%td= co.isin
+					%td= co.share_type

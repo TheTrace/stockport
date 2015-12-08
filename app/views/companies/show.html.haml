@@ -3,13 +3,13 @@
 
 	.pull-right= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-trash'></span></button>".html_safe, @company, method: :delete, data: { confirm: 'Are you sure you want to DELETE this company?' }, :title => "Destroy"
 
-	= link_to '&laquo; Index'.html_safe, companies_path
+	= link_to '&laquo; All Companies'.html_safe, companies_path
 
 	%H1
-		= link_to @company.name, "http://uk.advfn.com/p.php?pid=financials&symbol=#{@company.bourse}%3A#{@company.ticker.sub("-", ".")}", :target => "_blank" if !@company.bourse.blank? && !@company.ticker.blank?
+		= link_to (@company.name + " <span class='glyphicon glyphicon-blackboard' aria-hidden='true'></span>").html_safe, "http://uk.advfn.com/p.php?pid=financials&symbol=#{@company.bourse}%3A#{@company.ticker.sub("-", ".")}", :target => "_blank" if !@company.bourse.blank? && !@company.ticker.blank?
 		(
 		-#= link_to @company.ticker, "https://uk.finance.yahoo.com/q?s=" + @company.ticker + "&ql=1", :target => "_blank" if !@company.ticker.blank?
-		= link_to @company.ticker, "https://www.google.co.uk/finance?q=#{@company.bourse}%3A#{@company.ticker.sub("-", ".")}&authuser=0", :target => "_blank" if !@company.bourse.blank? && !@company.ticker.blank?
+		= link_to (@company.ticker + " <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span>").html_safe, "https://www.google.co.uk/finance?q=#{@company.bourse}%3A#{@company.ticker.sub("-", ".")}&authuser=0", :target => "_blank" if !@company.bourse.blank? && !@company.ticker.blank?
 		)
 		= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-pencil'></span></button>".html_safe, edit_company_path(@company), html = {:title => "Edit"}
 
@@ -69,7 +69,7 @@
 		%dd= @company.country
 
 		%dt Address:
-		%dd
+		%dd{ :itemprop => "address", :itemscope => true, :itemtype => "http://schema.org/PostalAddress" }
 			%address= @company.address.gsub(/\n/, "<br />").html_safe if !@company.address.blank?
 
 		%dt WWW Address:

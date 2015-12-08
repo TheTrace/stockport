@@ -21,6 +21,12 @@
 
 .form-horizontal
 	.form-group
+		%strong.col-sm-3 Holding:
+		.col-sm-4
+			= link_to @transaction.holding.company.name, @transaction.holding if @transaction.holding
+
+.form-horizontal
+	.form-group
 		%strong.col-sm-3 Quantity:
 		.col-sm-4
 			= @transaction.quantity
@@ -169,12 +175,6 @@
 		/ Needs to change to id link to people table
 		.col-sm-4
 			= @transaction.person 
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Holding:
-		.col-sm-4
-			= link_to @transaction.holding.company.name, @transaction.holding if @transaction.holding
 
 .form-horizontal
 	.form-group

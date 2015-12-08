@@ -155,10 +155,6 @@ Things I need...
 
 # Oct 2015
 Need to:
-- Might need more details in transaction for dividends (income/expense broken down for holdings)
-	- need Tax Rate (e.g. 10%)
-	- need Tax Credit
-	- need Gross Dividend (= Net Dividend Paid + Tax Credit) -> calculated value
 - Need to set currency as part of the company model - related to country (& bourse)
 - Default country, bourse, currency based on one or the other of these things
 - When creating a transaction, can default some stuff based on the stock selected
@@ -169,6 +165,19 @@ Need to:
 - In holdings add the stock value currently (what if scenario for sold ones) - i.e. current price x number of shares held (need way of knowing that)
 - Want to add £5 expenses to expenses and not take them off incomes until required
 - Make holdings expandable - i.e. hide the details of transactions 'til clicked on
+
+# Dec 15
+- Get easy way for company price - store it somewhere and update when X-time old and required
+- Get price history - store similarly
+- Show price history (graphs, etc)
+- jQuery UI for date selectors
+- Instant search for companies - use webservice too!
+- When reviewing a holding, it would be nice to see the high & low for the period held
+- Need to have a watchlist with alerts for points reached (high/low)
+- Need somewhere to hold max buy/sell rate (& keep history) - and way of working it out (on my own if necessary)
+- May need to build in ForEx somewhere along the way?
+- Need way of showing the FTSE and other indices
+- Will need to add pagination on Transactions (perhaps Companies and Holdings too). Portfolios shouldn't grow beyond a "page" worth.
 
 Done:
 Remove calculated fields like:
@@ -181,3 +190,7 @@ Add select_for for holding
 Add total_expense to holding
 Add total_income (maybe get rid of/or automatically update book_val) to holding
 Add all the framework for holding (CRUD)
+- Might need more details in transaction for dividends (income/expense broken down for holdings)
+	- need Tax Rate (e.g. 10%)
+	- need Tax Credit
+	- need Gross Dividend (= Net Dividend Paid + Tax Credit) -> calculated value

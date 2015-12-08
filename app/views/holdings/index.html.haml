@@ -15,9 +15,11 @@
 			%th
 
 	%tbody
+		- first_one = false # don't really need to see the first one
 		- @holdings.each do |holding|
 			%tr
 				%td
+					= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-chevron-down'></span></button>".html_safe, "##{ 'holding' + holding.id.to_s }", html = {:title => "Transactions", :"data-toggle" => "collapse", :role => "button"}
 					= holding.opened_at.strftime("%d-%b-%Y") if holding.opened_at
 				%td
 					= link_to holding.company.ticker, holding.company
@@ -34,12 +36,14 @@
 				%td
 					= holding.closed_at.strftime("%d-%b-%Y") if holding.closed_at && holding.closed_at > holding.opened_at
 				%td= link_to "<button type='button' class='btn btn-default btn-xs pull-right'><span class='glyphicon glyphicon-eye-open'></span></button>".html_safe, holding, html = {:title => "Show"}
-			%tr
+			%tr.collapse{ :id => "#{ 'holding' + holding.id.to_s }", :class => "#{ ' in' if first_one }" }
 				%td
 				%td{ :colspan => "6" }
 					= render :partial => "transactions/list", :object => holding.transactions.order(:trans_date)
 				%td
+			- first_one = false
 
 %br
 
 = link_to 'New Holding', new_holding_path
+%br

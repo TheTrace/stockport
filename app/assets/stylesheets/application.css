@@ -15,3 +15,7 @@
 .btn.red-eye {
 	color: red;
 }
+
+.collapsing {
+	/*transition: height 0.6s;*/
+}
