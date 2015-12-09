@@ -37,6 +37,37 @@ class Company < ActiveRecord::Base
 		end
 	end
 
+	class Sector
+		ENERGY = "energy"
+		MATERIAL = "materials"
+		INDUSTRIAL = "industrials"
+		CYCLICAL = "cyclical"
+		NONCYCLICAL = "non-cyclical"
+		FINANCIAL = "financials"
+		HEALTH = "healthcare"
+		TECHNOLOGY = "technology"
+		TELECOM = "telecomms"
+		UTILITY = "utilities"
+
+		NAMES = {
+			ENERGY => "Energy",
+			MATERIAL => "Basic Materials",
+			INDUSTRIAL => "Industrials",
+			CYCLICAL => "Cyclical Consumer Goods & Services",
+			NONCYCLICAL => "Non-Cyclical Consumer Goods & Services",
+			FINANCIAL => "Financials",
+			HEALTH => "Healthcare",
+			TECHNOLOGY => "Technology",
+			TELECOM => "Telecommunications Services",
+			UTILITY => "Utilities",
+		}
+
+		ALL = [ENERGY, MATERIAL, INDUSTRIAL, CYCLICAL, NONCYCLICAL, FINANCIAL, HEALTH, TECHNOLOGY, TELECOM, UTILITY]
+		def self.for_select
+			ALL.map{|t|[NAMES[t],t]}
+		end
+	end
+	
 	def self.for_select
 		Company.order("companies.name,companies.ticker").map{|c|[[c.ticker,c.name].join(" "),c.id]}
 	end 

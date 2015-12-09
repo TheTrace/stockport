@@ -34,7 +34,35 @@ Company
 - beta (or just in snapshot?)
 - Logo (image)
 - Address
+****
+- current price
+- price at (string - got from Yahoo)
+- price updated at - datetime
+- 52wk high
+- 52wk low
+- open
+- range (today?)
+- market capitalisation
+- P/E
+- Div/yield
+- EPS (+ currency unit)
+- Beta
+- Industry
 
+Snapshots - needed?
+- Company
+- price
+- spread?
+- market cap
+- beta
+- market rate?
+- .. ratios
+- dividend % (yield)
+- dividend cover
+- borrowings (debt)
+- growth (earnings & revenue & cash flow)
+- price to earnings (P/E)
+- outlook (market, bouyant, etc)
 
 Transactions
 - trans_type (purchase, sell, dividend, director purchase, cash in/out)
@@ -72,6 +100,7 @@ People (Directors etc)
 - contact (email, address, phone)
 - nationality
 - description / background
+- type (person, brokerage)
 
 Positions
 - Company
@@ -123,21 +152,6 @@ News Items
 - source
 - news
 
-Snapshots
-- Company
-- price
-- spread?
-- market cap
-- beta
-- market rate?
-- .. ratios
-- dividend % (yield)
-- dividend cover
-- borrowings (debt)
-- growth (earnings & revenue & cash flow)
-- price to earnings (P/E)
-- outlook (market, bouyant, etc)
-
 Historical Prices (from Yahoo!)
 - company
 - date
@@ -148,7 +162,16 @@ Historical Prices (from Yahoo!)
 - volume
 - adj_close
 
-Things I need...
+Broker Views
+- broker (could be a type of "People")
+- company
+- recommendation
+- target
+- price at recommendation date
+- recommendation date
+
+
+**** Things I need...
 - view by timeline as to when stock was bought, high/low whilst I've had it and percentages over time
 - be able to see capital gains AND dividend income
 - sort transactions index by company (not just it's 'id')

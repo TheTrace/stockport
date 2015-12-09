@@ -54,7 +54,7 @@
 
 	%dl.dl-horizontal
 		%dt Sector:
-		%dd= @company.sector
+		%dd= Company::Sector::NAMES[@company.sector] if @company.sector
 
 		%dt Description:
 		%dd= @company.description.gsub(/\n/, "<br />").html_safe

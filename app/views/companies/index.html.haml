@@ -40,7 +40,7 @@
 					%td= #Transaction::TransCurrency::NAMES[co.currency]
 					%td= #co.country
 					%td= co.bourse
-					%td= #co.sector
+					%td= Company::Sector::NAMES[co.sector] if co.sector
 					%td= #co.year_inc
 					%td= #co.mkt_sector
 					%td= #co.mkt_segment

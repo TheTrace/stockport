@@ -50,7 +50,7 @@
 	.form-group
 		= f.label :sector, :class => "control-label col-sm-2"
 		.col-sm-5
-			= f.text_field :sector, :class => "form-control"
+			= f.select :sector, options_for_select(Company::Sector.for_select, @company.sector), {}, :class => "form-control"
 
 	.form-group
 		= f.label :Address, :class => "control-label col-sm-2"
