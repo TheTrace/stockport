@@ -146,10 +146,20 @@ Portfolios
 - Holdings
 -! transactions (?)
 
+Notes
+- Name
+- Description
+- Date
+- company
+- holding
+- transaction
+- portfolio
+
 News Items
 - Date
 - Company
 - source
+- related source (broker/people link)
 - news
 
 Historical Prices (from Yahoo!)
