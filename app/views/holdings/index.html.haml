@@ -20,19 +20,20 @@
 			%tr
 				%td
 					= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-chevron-down'></span></button>".html_safe, "##{ 'holding' + holding.id.to_s }", html = {:title => "Transactions", :"data-toggle" => "collapse", :role => "button"}
-					= holding.opened_at.strftime("%d-%b-%Y") if holding.opened_at
+					%span{ :"data-toggle" => "tooltip", :"data-placement" => "top", :title => "Held #{ holding.held }" }
+						= holding.opened_at.strftime("%d-%b-%Y") if holding.opened_at
 				%td
 					= link_to holding.company.ticker, holding.company
 					= " - " + holding.company.name if holding.company
 				%td.text-right
-					= format("&pound; %.2f", holding.income).html_safe
+					= format("&pound; %.2f", holding.income).html_safe if holding.income
 				%td.text-right
-					= format("&pound; %.2f", holding.expense).html_safe
-				%td.text-right{ :class => "#{ holding.book_value > 0 ? 'text-success' : 'text-danger' }" }
+					= format("&pound; %.2f", holding.expense).html_safe if holding.expense
+				%td.text-right{ :class => "#{ holding.book_value.to_f > 0 ? 'text-success' : 'text-danger' }" }
 					-#.text-right= transaction.currency_format(transaction.price)
-					= format("&pound; %.2f", holding.book_value).html_safe
-				%td.text-right{ :class => "#{ holding.book_value > 0 ? 'text-success' : 'text-danger' }" }
-					= format("%.2f %", (holding.book_value * 100) / holding.expense)
+					= format("&pound; %.2f", holding.book_value).html_safe if holding.book_value
+				%td.text-right{ :class => "#{ holding.book_value.to_f > 0 ? 'text-success' : 'text-danger' }" }
+					= format("%.2f %", (holding.book_value * 100) / holding.expense) if holding.book_value
 				%td
 					= holding.closed_at.strftime("%d-%b-%Y") if holding.closed_at && holding.closed_at > holding.opened_at
 				%td= link_to "<button type='button' class='btn btn-default btn-xs pull-right'><span class='glyphicon glyphicon-eye-open'></span></button>".html_safe, holding, html = {:title => "Show"}

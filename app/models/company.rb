@@ -37,6 +37,22 @@ class Company < ActiveRecord::Base
 		end
 	end
 
+	class TransCurrency
+		GBP = "gbp"
+		USD = "usd"
+		
+		NAMES = {
+			GBP => "£ GB",
+			USD => "$ US"
+		}
+		
+		ALL = [GBP, USD]
+		
+		def self.for_select
+			ALL.map{|t|[NAMES[t],t]}
+		end
+	end
+
 	class Sector
 		ENERGY = "energy"
 		MATERIAL = "materials"

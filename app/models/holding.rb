@@ -2,6 +2,8 @@ class Holding < ActiveRecord::Base
 	has_many :transactions
 	belongs_to :company #, :order => "name DESC" ## Doesn't work!
 
+	require 'action_view'
+	include ActionView::Helpers::DateHelper
 	
 	def calc_book_val()
 		val_in = 0.00
@@ -26,5 +28,17 @@ class Holding < ActiveRecord::Base
 		# eventually just return "val"
 		#self.book_value = val
 		self.update(:income => val_in, :expense => val_exp, :book_value => val_in - val_exp)
+	end
+	
+	def held()
+		h = ""
+		if opened_at
+			if closed_at && closed_at > opened_at
+				h = distance_of_time_in_words(closed_at, opened_at)
+			else
+				h = distance_of_time_in_words_to_now(opened_at)
+			end
+		end
+		return h
 	end
 end

@@ -92,6 +92,9 @@ Transactions
 - div tax rate
 - div tax credit
 - div gross
+***
+- Target
+- Stop
 
 People (Directors etc)
 - name_first
@@ -101,17 +104,17 @@ People (Directors etc)
 - nationality
 - description / background
 - type (person, brokerage)
+- day of birth
+- month of birth
+- year of birth
+- age
+- date age entered (i.e. age at this date was x -> could work out year of birth[ish])
 
 Positions
 - Company
 - Person
 - position1 (President)
 - position2 (Global Manufacturing & Supply)
-- day of birth
-- month of birth
-- year of birth
-- age
-- date age entered (i.e. age at this date was x -> could work out year of birth[ish])
 - date start
 - date end
 - salary
