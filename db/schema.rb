@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151201105430) do
+ActiveRecord::Schema.define(version: 20160114100942) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -32,20 +32,44 @@ ActiveRecord::Schema.define(version: 20151201105430) do
     t.string   "share_type"
     t.text     "address"
     t.string   "logo"
+    t.decimal  "current_price",      precision: 10, scale: 4, default: 0.0
+    t.string   "price_at_str"
+    t.datetime "price_updated_at"
+    t.decimal  "high52wk",           precision: 10, scale: 4, default: 0.0
+    t.decimal  "low52wk",            precision: 10, scale: 4, default: 0.0
+    t.decimal  "open",               precision: 10, scale: 4, default: 0.0
+    t.decimal  "range",              precision: 10, scale: 4, default: 0.0
+    t.string   "mkt_capitalisation"
+    t.decimal  "price_earnings",     precision: 10, scale: 4, default: 0.0
+    t.decimal  "div_yield_pc",       precision: 10, scale: 4, default: 0.0
+    t.decimal  "earnings_per_share", precision: 10, scale: 4, default: 0.0
+    t.decimal  "beta",               precision: 10, scale: 4, default: 0.0
+    t.string   "industry"
   end
 
   create_table "holdings", force: true do |t|
     t.integer  "company_id"
-    t.decimal  "book_value",  precision: 10, scale: 4
+    t.decimal  "book_value",   precision: 10, scale: 4
     t.date     "opened_at"
     t.date     "closed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
     t.string   "description"
-    t.decimal  "expense",     precision: 10, scale: 4
-    t.decimal  "income",      precision: 10, scale: 4
+    t.decimal  "expense",      precision: 10, scale: 4
+    t.decimal  "income",       precision: 10, scale: 4
     t.integer  "user_id"
+    t.integer  "portfolio_id"
+  end
+
+  create_table "portfolios", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "user_id"
+    t.decimal  "book_cost",   precision: 10, scale: 4
+    t.decimal  "mkt_value",   precision: 10, scale: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "transactions", force: true do |t|
@@ -75,6 +99,8 @@ ActiveRecord::Schema.define(version: 20151201105430) do
     t.decimal  "div_tax_rate",   precision: 10, scale: 4, default: 0.0
     t.decimal  "div_tax_credit", precision: 10, scale: 4, default: 0.0
     t.decimal  "div_gross",      precision: 10, scale: 4, default: 0.0
+    t.decimal  "target_price",   precision: 10, scale: 4, default: 0.0
+    t.decimal  "stop_price",     precision: 10, scale: 4, default: 0.0
   end
 
   create_table "users", force: true do |t|

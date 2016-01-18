@@ -7,6 +7,7 @@ Stockport::Application.routes.draw do
 	resources :companies
 	resources :users
 	resources :holdings
+	resources :portfolios
 	resources :sessions, only: [:new, :create, :destroy]
 
 	match "/signin", to: "sessions#new", via: "get"

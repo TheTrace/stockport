@@ -1,9 +1,10 @@
 class Holding < ActiveRecord::Base
 	has_many :transactions
 	belongs_to :company #, :order => "name DESC" ## Doesn't work!
+	belongs_to :portfolio
 
 	require 'action_view'
-	include ActionView::Helpers::DateHelper
+	include ActionView::Helpers::DateHelper  # to use distance_of_time_in_words
 	
 	def calc_book_val()
 		val_in = 0.00

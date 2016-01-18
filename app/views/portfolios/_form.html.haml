@@ -1,0 +1,42 @@
+= form_for(@portfolio, :html => { :class => "form-horizontal", :role => "form" } ) do |f|
+	- if @portfolio.errors.any?
+		.error_explanation
+			%h2
+				= pluralize(@portfolio.errors.count, "error")
+				prohibited this portfolio from being saved:
+
+			%ul
+				- @portfolio.errors.full_messages.each do |msg|
+					%li= msg
+
+	.form-group
+		= f.label :name, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_field :name, :class => "form-control"
+
+	.form-group
+		= f.label :description, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.text_area :description, :class => "form-control", :rows => "5"
+
+	.form-group
+		= f.label :owner, :class => "control-label col-sm-2"
+		.col-sm-5
+			-# if @portfolio.user
+				-#= f.hidden_field :user_id, :value => "#{@portfolio.user.id}"
+			= f.select :user_id, options_for_select(User.all.map{|t|[t.name, t.id]}, @portfolio.user_id), {}, :class => "form-control"
+
+	.form-group
+		= f.label :book_value, :class => "control-label col-sm-2"
+		.col-sm-5
+			-# UPDATE BOOK_COST TO BOOK_VALUE
+			= f.number_field :book_cost, :step => "0.01", :class => "form-control"
+
+	.form-group
+		= f.label :market_value, :class => "control-label col-sm-2"
+		.col-sm-5
+			= f.number_field :mkt_value, :step => "0.01", :class => "form-control"
+
+	.actions
+		.col-sm-offset-2
+			= f.submit class: "btn btn-primary"

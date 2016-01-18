@@ -11,6 +11,7 @@ http://ws.cdyne.com/delayedstockquote/delayedstockquote.asmx
 http://www.webservicex.net/WS/WSDetails.aspx?CATID=2&WSID=9
 
 YQL console (Yahoo Query Language)
+http://wern-ancheta.com/blog/2015/04/05/getting-started-with-the-yahoo-finance-api/
 
 # Page scrape
 Get the Sector Summary from the Google Finance page (https://www.google.com/finance)
@@ -34,7 +35,7 @@ Company
 - beta (or just in snapshot?)
 - Logo (image)
 - Address
-****
+**** TODO: Handle the following in the views & controller
 - current price
 - price at (string - got from Yahoo)
 - price updated at - datetime
@@ -92,7 +93,7 @@ Transactions
 - div tax rate
 - div tax credit
 - div gross
-***
+*** TODO: Handle the following in the views & controller
 - Target
 - Stop
 
@@ -140,14 +141,27 @@ Holdings
 	- sum closed trans
 - Current value (calculated from company transactions)
 - closing date (?)
-
+- Portfolio ID
 
 Portfolios
 - Name
 - Description (method, goals, etc. eg. beat the FTSE100)
 - user
-- Holdings
+- Book Cost
+- Market Value
+- (has many) Holdings
+-> calculated Profit(/Loss)
+-> calculated %
 -! transactions (?)
+
+**** Need another table to link a "watch" type portfolio to just companies
+*** Also need to be able to have a portfolio of portfolios!
+Watches
+- Portfolio
+- Company
+- Alert High
+- Alert Low
+- Description (explain context, goals, etc)
 
 Notes
 - Name
@@ -194,7 +208,6 @@ Need to:
 - Need to set currency as part of the company model - related to country (& bourse)
 - Default country, bourse, currency based on one or the other of these things
 - When creating a transaction, can default some stuff based on the stock selected
-- need to do list of transactions as an include (for index and for holdings) - use options as to what to show (don't need the company as a sub-set of the holding)
 
 # Nov 2015
 - Put the stock value etc from controller into the company - could YHOO cope with multiple?  maybe there's a batch way to do it?
@@ -215,6 +228,11 @@ Need to:
 - Need way of showing the FTSE and other indices
 - Will need to add pagination on Transactions (perhaps Companies and Holdings too). Portfolios shouldn't grow beyond a "page" worth.
 
+# Jan 16
+- Need a portfolio of portfolios
+- Need to have a portfolio with just companies (not holdings)
+
+
 Done:
 Remove calculated fields like:
 - Payable
@@ -230,3 +248,4 @@ Add all the framework for holding (CRUD)
 	- need Tax Rate (e.g. 10%)
 	- need Tax Credit
 	- need Gross Dividend (= Net Dividend Paid + Tax Credit) -> calculated value
+- need to do list of transactions as an include (for index and for holdings) - use options as to what to show (don't need the company as a sub-set of the holding)
