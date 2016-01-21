@@ -231,6 +231,15 @@ Need to:
 # Jan 16
 - Need a portfolio of portfolios (?)
 - Need to have a portfolio with just companies (not holdings) -> Watchlist entity
+- Wachlist entry needs:
+  - date added to watchlist
+	- Price when added
+	- buy point alert (low value)
+	- give up point? alert (high value)
+- On a Portfolio
+  - Need bought at price (aggregate each purchase to a total?)
+	- Sort out Market values with companies, holdings, etc
+	
 
 
 Done:
