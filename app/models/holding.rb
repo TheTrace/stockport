@@ -3,6 +3,8 @@ class Holding < ActiveRecord::Base
 	belongs_to :company #, :order => "name DESC" ## Doesn't work!
 	belongs_to :portfolio
 
+	has_one :last_trans, :class_name => "Transaction", :limit => 1, :order => "trans_date DESC"
+
 	require 'action_view'
 	include ActionView::Helpers::DateHelper  # to use distance_of_time_in_words
 	

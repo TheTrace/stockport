@@ -8,57 +8,28 @@
 	= @portfolio.name
 
 %h3
-	= @portfolio.company.ticker + " - " + @portfolio.company.name if @portfolio.company 
+	= @portfolio.name
 	= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-pencil'></span></button>".html_safe, edit_portfolio_path(@portfolio), html = {:title => "Edit"}
 
 .form-horizontal
 	.form-group
-		%strong.col-sm-3 Opening date:
-		.col-sm-4
-			= @portfolio.opened_at.strftime("%d-%b-%Y") if @portfolio.opened_at
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Closing date:
-		.col-sm-4
-			- if @portfolio.closed_at && @portfolio.opened_at && @portfolio.closed_at > @portfolio.opened_at
-				= @portfolio.closed_at.strftime("%d-%b-%Y")
-			(
-			= @portfolio.held
-			)
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Company:
-		.col-sm-5
-			= link_to @portfolio.company.name, @portfolio.company if @portfolio.company
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Income:
-		.col-sm-5.text-success
-			&pound;
-			= @portfolio.income.to_f
-
-.form-horizontal
-	.form-group
-		%strong.col-sm-3 Expense:
+		%strong.col-sm-3 Market Value:
 		.col-sm-5.text-danger
 			&pound;
-			= @portfolio.expense.to_f
+			= @portfolio.mkt_value.to_f
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Book Value:
-		.col-sm-5{ :class => "#{ @portfolio.book_value.to_f > 0 ? 'text-success' : 'text-danger' }" }
+		.col-sm-5{ :class => "#{ @portfolio.book_cost.to_f > 0 ? 'text-success' : 'text-danger' }" }
 			&pound;
-			= @portfolio.book_value.to_f
+			= @portfolio.book_cost.to_f
 
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 % Gain / Loss
-		.col-sm-5{ :class => "#{ @portfolio.book_value.to_f > 0 ? 'text-success' : 'text-danger' }" }
-			= format("%.2f %", (@portfolio.book_value.to_f * 100) / @portfolio.expense) if @portfolio.book_value
+		.col-sm-5{ :class => "#{ @portfolio.book_cost.to_f > 0 ? 'text-success' : 'text-danger' }" }
+			= format("%.2f %", (@portfolio.book_cost.to_f * 100) / @portfolio.mkt_value) if @portfolio.book_cost && @portfolio.mkt_value
 
 -#.form-horizontal
 	-#.form-group
@@ -75,3 +46,6 @@
 %br
 %br
 -# Add holdings here!
+.row
+	.col-md-12
+		= render :partial => "holdings/list", :object => @portfolio.holdings.order(:opened_at), :locals => { :show_header => true, :include_name => true }

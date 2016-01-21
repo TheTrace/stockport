@@ -5,13 +5,11 @@
 %table.table
 	%thead
 		%tr
-			%th Opening Date
-			%th Company
-			%th.text-right Income
+			%th 
+			%th Name
 			%th.text-right Expense
 			%th.text-right Book Value
 			%th.text-right %
-			%th Closing Date
 			%th
 
 	%tbody
@@ -20,27 +18,20 @@
 			%tr
 				%td
 					= link_to "<button type='button' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-chevron-down'></span></button>".html_safe, "##{ 'portfolio' + portfolio.id.to_s }", html = {:title => "Transactions", :"data-toggle" => "collapse", :role => "button"}
-					%span{ :"data-toggle" => "tooltip", :"data-placement" => "top", :title => "Held #{ portfolio.held }" }
-						= portfolio.opened_at.strftime("%d-%b-%Y") if portfolio.opened_at
 				%td
-					= link_to portfolio.company.ticker, portfolio.company
-					= " - " + portfolio.company.name if portfolio.company
+					= link_to portfolio.name, portfolio
 				%td.text-right
-					= format("&pound; %.2f", portfolio.income).html_safe if portfolio.income
-				%td.text-right
-					= format("&pound; %.2f", portfolio.expense).html_safe if portfolio.expense
-				%td.text-right{ :class => "#{ portfolio.book_value.to_f > 0 ? 'text-success' : 'text-danger' }" }
+					= format("&pound; %.2f", portfolio.mkt_value).html_safe if portfolio.mkt_value
+				%td.text-right{ :class => "#{ portfolio.book_cost.to_f > 0 ? 'text-success' : 'text-danger' }" }
 					-#.text-right= transaction.currency_format(transaction.price)
-					= format("&pound; %.2f", portfolio.book_value).html_safe if portfolio.book_value
-				%td.text-right{ :class => "#{ portfolio.book_value.to_f > 0 ? 'text-success' : 'text-danger' }" }
-					= format("%.2f %", (portfolio.book_value * 100) / portfolio.expense) if portfolio.book_value
-				%td
-					= portfolio.closed_at.strftime("%d-%b-%Y") if portfolio.closed_at && portfolio.closed_at > portfolio.opened_at
+					= format("&pound; %.2f", portfolio.book_cost).html_safe if portfolio.book_cost
+				%td.text-right{ :class => "#{ portfolio.book_cost.to_f > 0 ? 'text-success' : 'text-danger' }" }
+					= format("%.2f %", (portfolio.book_cost * 100) / portfolio.mkt_value) if portfolio.book_cost && portfolio.mkt_value
 				%td= link_to "<button type='button' class='btn btn-default btn-xs pull-right'><span class='glyphicon glyphicon-eye-open'></span></button>".html_safe, portfolio, html = {:title => "Show"}
 			%tr.collapse{ :id => "#{ 'portfolio' + portfolio.id.to_s }", :class => "#{ ' in' if first_one }" }
 				%td
 				%td{ :colspan => "6" }
-					= render :partial => "transactions/list", :object => portfolio.transactions.order(:trans_date)
+					-#= render :partial => "holdings/list", :object => portfolio.holdings.order(:opened_at)
 				%td
 			- first_one = false
 

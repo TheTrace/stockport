@@ -37,7 +37,7 @@ class Company < ActiveRecord::Base
 		end
 	end
 
-	class TransCurrency
+	class CompanyCurrency
 		GBP = "gbp"
 		USD = "usd"
 		
@@ -88,4 +88,15 @@ class Company < ActiveRecord::Base
 		Company.order("companies.name,companies.ticker").map{|c|[[c.ticker,c.name].join(" "),c.id]}
 	end 
 
+	def currency_format(val)
+		if not val.blank?
+			if self.currency.eql?(CompanyCurrency::USD)
+				return format("$ %.2f", val)
+			else
+				return format("%.2f p", val)
+			end
+		else
+			return ""
+		end
+	end
 end

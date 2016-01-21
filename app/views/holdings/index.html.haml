@@ -36,7 +36,8 @@
 					= format("%.2f %", (holding.book_value * 100) / holding.expense) if holding.book_value
 				%td
 					= holding.closed_at.strftime("%d-%b-%Y") if holding.closed_at && holding.closed_at > holding.opened_at
-				%td= link_to "<button type='button' class='btn btn-default btn-xs pull-right'><span class='glyphicon glyphicon-eye-open'></span></button>".html_safe, holding, html = {:title => "Show"}
+				- cls = holding.portfolio_id.nil? ? " red-eye" : ""
+				%td= link_to "<button type='button' class='btn btn-default btn-xs pull-right#{ cls }'><span class='glyphicon glyphicon-eye-open'></span></button>".html_safe, holding, html = {:title => "Show"}
 			%tr.collapse{ :id => "#{ 'holding' + holding.id.to_s }", :class => "#{ ' in' if first_one }" }
 				%td
 				%td{ :colspan => "6" }

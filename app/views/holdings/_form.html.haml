@@ -69,6 +69,13 @@
 			});
 
 	.form-group
+		= f.label :portfolio, :class => "control-label col-sm-2"
+		.col-sm-5
+			-# if @holding.user
+				-#= f.hidden_field :portfolio_id, :value => "#{@holding.user.id}"
+			= f.select :portfolio_id, options_for_select(Portfolio.all.map{|t|[t.name, t.id]}, @holding.portfolio_id), {}, :class => "form-control"
+
+	.form-group
 		= f.label :user_id, :class => "control-label col-sm-2"
 		.col-sm-5
 			-# if @holding.user

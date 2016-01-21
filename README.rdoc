@@ -229,8 +229,8 @@ Need to:
 - Will need to add pagination on Transactions (perhaps Companies and Holdings too). Portfolios shouldn't grow beyond a "page" worth.
 
 # Jan 16
-- Need a portfolio of portfolios
-- Need to have a portfolio with just companies (not holdings)
+- Need a portfolio of portfolios (?)
+- Need to have a portfolio with just companies (not holdings) -> Watchlist entity
 
 
 Done:

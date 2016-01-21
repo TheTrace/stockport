@@ -6,6 +6,8 @@
 
 %h2
 	= @holding.name
+	\-
+	= link_to @holding.portfolio.name, @holding.portfolio if @holding.portfolio
 
 %h3
 	= @holding.company.ticker + " - " + @holding.company.name if @holding.company 

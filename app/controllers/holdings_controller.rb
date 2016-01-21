@@ -43,6 +43,7 @@ class HoldingsController < ApplicationController
     respond_to do |format|
       if @holding.update(holding_params)
 				@holding.calc_book_val
+				@holding.portfolio.calc_book_val if @holding.portfolio
         format.html { redirect_to @holding, notice: 'holding was successfully updated.' }
         format.json { head :no_content }
       else

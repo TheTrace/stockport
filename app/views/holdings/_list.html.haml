@@ -1,0 +1,46 @@
+- list ||= @holdings
+- show_header ||= false
+- include_name ||= false
+
+- if list.any?
+	%table.table
+		- if show_header
+			%thead
+				%tr
+					%th Date
+					- if include_name
+						%th Company
+					%th.text-right Last Price
+					%th.text-right Change
+					%th.text-right Shares
+					%th.text-right Cost basis
+					%th.text-right Mkt Value
+					%th.text-right Gain
+					%th.text-right Gain %
+					%th.text-right Day's gain
+					%th.text-right Overall Return
+					%th
+
+		%tbody
+			- list.each do |holding|
+				%tr
+					%td= holding.opened_at.strftime("%d-%b-%Y") if holding.opened_at
+					- if include_name
+						%td
+							= link_to holding.company.ticker, holding.company
+							= " - " + holding.company.name if holding.company
+
+					%td.text-right= holding.company.current_price
+					%td.text-right %
+					%td.text-right= holding.last_trans.quantity if holding.last_trans
+					%td.text-right= holding.book_value
+					%td.text-right Mkt Value
+					%td.text-right Gain
+					%td.text-right Gain %
+					%td.text-right Day's gain
+					%td.text-right Overall Return
+					%td
+
+					- cls = holding.portfolio_id.nil? ? " red-eye" : ""
+					%td= link_to "<button type='button' class='btn btn-default btn-xs pull-right#{ cls }'><span class='glyphicon glyphicon-eye-open'></span></button>".html_safe, holding, html = {:title => "Show"}
+
