@@ -99,4 +99,17 @@ class Company < ActiveRecord::Base
 			return ""
 		end
 	end
+
+	def update_details(details)
+		# Details - currently csv format, will be JSON
+		price_a = details.join(',')
+		# debug(price_a)
+		price_a = price_a.split(',')
+		self.current_price = price_a[0]
+		the_date = price_a[1].split('/')
+		self.price_at_str = price_a[2].to_time.strftime('%H:%M ') + (the_date[2] + "-" + the_date[0] + "-" + the_date[1]).to_date.strftime('%d-%b-%Y')
+		the_time = Time.new
+		self.price_updated_at = the_time
+		self.save
+	end
 end

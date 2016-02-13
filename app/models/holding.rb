@@ -20,7 +20,7 @@ class Holding < ActiveRecord::Base
 				#if t.currency.eql?(Transaction::TransCurrency::GBP)
 				#	val_in += t.div_gross.blank? ? t.div_net_total : t.div_gross
 				#else
-				val_in += t.div_net_total + t.expenses
+				val_in += t.div_net_total.to_f + t.expenses
 				#end
 			else
 				val_exp += t.consideration if !t.consideration.blank?

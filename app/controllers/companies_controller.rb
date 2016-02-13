@@ -20,6 +20,7 @@ require 'open-uri'
 		tick = @company.ticker
 		tick += ".L" if @company.bourse.eql?("LSE")
 		@new_price = read_stock(tick)
+		@company.update_details(@new_price)
 	end
 
 	def read_stock(ticker)

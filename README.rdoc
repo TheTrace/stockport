@@ -12,6 +12,7 @@ http://www.webservicex.net/WS/WSDetails.aspx?CATID=2&WSID=9
 
 YQL console (Yahoo Query Language)
 http://wern-ancheta.com/blog/2015/04/05/getting-started-with-the-yahoo-finance-api/
+https://developer.yahoo.com/yql/guide/running-chapt.html
 
 # Page scrape
 Get the Sector Summary from the Google Finance page (https://www.google.com/finance)

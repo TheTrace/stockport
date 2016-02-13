@@ -15,12 +15,12 @@
 				%th Ticker
 				%th Name
 				-#%th Desc
-				%th Ref
+				%th Price
 				%th Currency
 				%th Country
 				%th Bourse
 				%th Sector
-				%th Year Inc
+				%th Industry
 				%th Mkt Sector
 				%th Mkt Segment
 				%th ISIN
@@ -36,12 +36,13 @@
 						-#= co.description
 					-#%td{ :"data-toggle" => "tooltip", :"data-placement" => "top", :title => "#{ co.description }" }
 					%td
-						=# co.reference
+						%span{ :"data-toggle" => "tooltip", :"data-placement" => "top", :title => "As at #{ co.price_at_str }" }
+							= co.currency_format(co.current_price)
 					%td= #Transaction::TransCurrency::NAMES[co.currency]
 					%td= #co.country
 					%td= co.bourse
 					%td= Company::Sector::NAMES[co.sector] if co.sector
-					%td= #co.year_inc
+					%td= co.industry.to_s
 					%td= #co.mkt_sector
 					%td= #co.mkt_segment
 					%td= #co.isin

@@ -48,7 +48,7 @@
 					- else
 						-# tt_div
 						%td.text-right= transaction.currency_format(transaction.price) if not transaction.price.eql?(0.0)
-						%td.text-right= format("&pound; %.2f", transaction.div_net_total).html_safe
+						%td.text-right= format("&pound; %.2f", transaction.div_net_total.to_f).html_safe
 						%td.text-right= format("%.2f p", transaction.avg_cost) if not transaction.avg_cost.eql?(0.0)
 						%td.text-right= format("%.2f", transaction.percent_cost).to_s + "%"
 

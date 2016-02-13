@@ -33,7 +33,12 @@
 	.form-group
 		%strong.col-sm-3 Company:
 		.col-sm-5
-			= link_to @holding.company.name, @holding.company if @holding.company
+			- if @holding.company
+				= link_to @holding.company.name, @holding.company
+				%span{ :"data-toggle" => "tooltip", :"data-placement" => "top", :title => "As at #{ @holding.company.price_at_str }" }
+					[
+					= @holding.company.currency_format(@holding.company.current_price)
+					]
 
 .form-horizontal
 	.form-group

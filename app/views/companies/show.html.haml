@@ -20,6 +20,7 @@
 				= @company.bourse
 		.panel-body
 			-#= debug(@new_price)
+			-#= @new_price		# Problem just before US opens = [["93.42", "1/27/2016", "4:00pm", "N/A"]]
 			-#= @new_price    # e.g. = [["1558.5000", "9/24/2015", "10:49am", "-17.0000 - -1.0790%"]]
 			- price_a = @new_price.join(',')
 			-#= debug(price_a)

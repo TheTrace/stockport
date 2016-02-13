@@ -13,9 +13,9 @@
 			.navbar-collapse.collapse
 				%ul.nav.navbar-nav
 					%li{ :class => "#{params[:controller].eql?("companies") ? "active" : ""}" }= link_to "Home", '/'
-					%li{ :class => "#{params[:controller].eql?("transactions") ? "active" : ""}" }= link_to "Transactions", :transactions
-					%li{ :class => "#{params[:controller].eql?("holdings") ? "active" : ""}" }= link_to "Holdings", :holdings
 					%li{ :class => "#{params[:controller].eql?("portfolios") ? "active" : ""}" }= link_to "Portfolios", :portfolios
+					%li{ :class => "#{params[:controller].eql?("holdings") ? "active" : ""}" }= link_to "Holdings", :holdings
+					%li{ :class => "#{params[:controller].eql?("transactions") ? "active" : ""}" }= link_to "Transactions", :transactions
 					%li.dropdown
 						%a.dropdown-toggle{ :href => "#", :"data-toggle" => "dropdown" }
 							Admin
