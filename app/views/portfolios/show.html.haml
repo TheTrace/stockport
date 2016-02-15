@@ -14,7 +14,7 @@
 .form-horizontal
 	.form-group
 		%strong.col-sm-3 Market Value:
-		.col-sm-5.text-danger
+		.col-sm-5
 			&pound;
 			= @portfolio.mkt_value.to_f
 
@@ -29,7 +29,7 @@
 	.form-group
 		%strong.col-sm-3 % Gain / Loss
 		.col-sm-5{ :class => "#{ @portfolio.book_cost.to_f > 0 ? 'text-success' : 'text-danger' }" }
-			= format("%.2f %", (@portfolio.book_cost.to_f * 100) / @portfolio.mkt_value) if @portfolio.book_cost && @portfolio.mkt_value
+			= format("%.2f %", ((@portfolio.mkt_value.to_f - @portfolio.book_cost.to_f.abs) * 100) / @portfolio.book_cost.to_f) if @portfolio.book_cost && @portfolio.mkt_value
 
 -#.form-horizontal
 	-#.form-group

@@ -27,12 +27,25 @@ class Holding < ActiveRecord::Base
 			end
 			#print val_in.to_s + "\n"
 			#print val_exp.to_s + "\n"
-		end
 		# eventually just return "val"
+		end
 		#self.book_value = val
 		self.update(:income => val_in, :expense => val_exp, :book_value => val_in - val_exp)
 	end
-	
+
+	def calc_mkt_val()
+		# Add this in when we have a "market_value" field in the holding
+		#						- if holding.last_trans
+		#					- cur_val = holding.company.current_price * holding.last_trans.quantity
+		#					- if holding.company.currency.eql?(Company::CompanyCurrency::GBP)
+		#						- cur_val = cur_val / 100
+		#						- currency = "&pound;"
+		#					- else
+		#						- currency = "$"
+		#					= currency.html_safe
+		#					= format("%.2f", cur_val)
+	end
+
 	def held()
 		h = ""
 		if opened_at
@@ -44,4 +57,15 @@ class Holding < ActiveRecord::Base
 		end
 		return h
 	end
+
+	def closed?()
+		c = false
+		if opened_at
+			if closed_at && closed_at > opened_at
+				c = true
+			end
+		end
+		return c
+	end
+
 end

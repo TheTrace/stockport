@@ -36,7 +36,6 @@ Company
 - beta (or just in snapshot?)
 - Logo (image)
 - Address
-**** TODO: Handle the following in the views & controller
 - current price
 - price at (string - got from Yahoo)
 - price updated at - datetime
@@ -50,6 +49,10 @@ Company
 - EPS (+ currency unit)
 - Beta
 - Industry
+**** TODO: Handle the following in the views & controller
+- RiskGrade - Can I get it?
+- %change (today)
+- value change (today)
 
 Snapshots - needed?
 - Company
@@ -140,9 +143,11 @@ Holdings
 - Transactions (point here)
 	- sum open trans
 	- sum closed trans
-- Current value (calculated from company transactions)
+- Book value (calculated from company transactions)
 - closing date (?)
 - Portfolio ID
+*** Add
+- Market value
 
 Portfolios
 - Name

@@ -33,12 +33,21 @@
 					%td.text-right= holding.company.current_price
 					%td.text-right %
 					%td.text-right= holding.last_trans.quantity if holding.last_trans
-					%td.text-right= holding.book_value
-					%td.text-right Mkt Value
-					%td.text-right Gain
+					%td.text-right{ :class => "#{ holding.book_value.to_f > 0 ? 'text-success' : 'text-danger' }" }= holding.book_value
+					%td.text-right
+						- if holding.last_trans
+							- cur_val = holding.company.current_price * holding.last_trans.quantity
+							- if holding.company.currency.eql?(Company::CompanyCurrency::GBP)
+								- cur_val = cur_val / 100
+								- currency = "&pound;"
+							- else
+								- currency = "$"
+							= currency.html_safe
+							= format("%.2f", cur_val)
+					%td.text-rights Gain
 					%td.text-right Gain %
 					%td.text-right Day's gain
-					%td.text-right Overall Return
+					%td.text-right{ :class => "#{ holding.book_value.to_f > 0 ? 'text-success' : 'text-danger' }" }= holding.book_value if holding.closed?
 					%td
 
 					- cls = holding.portfolio_id.nil? ? " red-eye" : ""
