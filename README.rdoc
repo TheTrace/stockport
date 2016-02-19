@@ -205,6 +205,7 @@ Broker Views
 
 
 **** Things I need...
+- The Portfolios don't seem to be adding up the Holdings book values properly
 - view by timeline as to when stock was bought, high/low whilst I've had it and percentages over time
 - be able to see capital gains AND dividend income
 - sort transactions index by company (not just it's 'id')
