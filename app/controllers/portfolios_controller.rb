@@ -42,7 +42,7 @@ class PortfoliosController < ApplicationController
   def update
     respond_to do |format|
       if @portfolio.update(portfolio_params)
-				@portfolio.calc_book_val
+		@portfolio.calc_book_val
         format.html { redirect_to @portfolio, notice: 'Portfolio was successfully updated.' }
         format.json { head :no_content }
       else

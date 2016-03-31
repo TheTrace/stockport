@@ -32,10 +32,10 @@
 
 					%td.text-right= holding.company.current_price
 					%td.text-right %
-					%td.text-right= holding.last_trans.quantity if holding.last_trans
+					%td.text-right= #holding.last_trans.quantity.to_i if holding.last_trans
 					%td.text-right{ :class => "#{ holding.book_value.to_f > 0 ? 'text-success' : 'text-danger' }" }= holding.book_value
 					%td.text-right
-						- if holding.last_trans
+						-# if holding.last_trans
 							- cur_val = holding.company.current_price * holding.last_trans.quantity
 							- if holding.company.currency.eql?(Company::CompanyCurrency::GBP)
 								- cur_val = cur_val / 100
