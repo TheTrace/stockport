@@ -3,7 +3,7 @@ class Holding < ActiveRecord::Base
 	belongs_to :company #, :order => "name DESC" ## Doesn't work!
 	belongs_to :portfolio
 
-	has_one :last_trans, :class_name => "Transaction", :limit => 1, :order => "trans_date DESC"
+	#has_one :last_trans, :class_name => "Transaction", :order => "trans_date DESC", :limit => 1   # This don't work
 
 	require 'action_view'
 	include ActionView::Helpers::DateHelper  # to use distance_of_time_in_words
@@ -29,8 +29,19 @@ class Holding < ActiveRecord::Base
 			#print val_exp.to_s + "\n"
 		# eventually just return "val"
 		end
+		book_val = val_in - val_exp
+		puts "Checking if closed\n"
+		if !self.closed?
+			puts "it's not closed!\n'"
+			if self.last_trans
+				cur_val = self.company.current_price * self.last_trans.quantity
+				cur_val = (cur_val / 100) if self..company.currency.eql?(Company::CompanyCurrency::GBP)
+				book_val += cur_val
+				puts "got book_val"
+			end
+		end
 		#self.book_value = val
-		self.update(:income => val_in, :expense => val_exp, :book_value => val_in - val_exp)
+		self.update(:income => val_in, :expense => val_exp, :book_value => book_val)
 	end
 
 	def calc_mkt_val()
@@ -68,4 +79,7 @@ class Holding < ActiveRecord::Base
 		return c
 	end
 
+	def last_trans()
+		self.transactions.order(trans_date: :desc).first
+	end
 end

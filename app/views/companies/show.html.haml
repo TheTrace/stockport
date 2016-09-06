@@ -28,7 +28,7 @@
 			%strong
 				= @company.bourse.eql?('LSE') ? price_a[0] + 'p' : '$'.html_safe + price_a[0];
 				- p = price_a[3]
-				-#= debug(p)\
+				-#= debug(p)
 				- c = ""
 				- if p[0].eql?('+')
 					- c = "stock-up"

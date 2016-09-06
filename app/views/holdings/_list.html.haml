@@ -35,8 +35,10 @@
 					%td.text-right= #holding.last_trans.quantity.to_i if holding.last_trans
 					%td.text-right{ :class => "#{ holding.book_value.to_f > 0 ? 'text-success' : 'text-danger' }" }= holding.book_value
 					%td.text-right
-						-# if holding.last_trans
-							- cur_val = holding.company.current_price * holding.last_trans.quantity
+						- lt = holding.transactions.order("trans_date DESC").first
+						- if lt
+							-#= lt.inspect
+							- cur_val = holding.company.current_price * lt.quantity.to_i
 							- if holding.company.currency.eql?(Company::CompanyCurrency::GBP)
 								- cur_val = cur_val / 100
 								- currency = "&pound;"
@@ -44,6 +46,8 @@
 								- currency = "$"
 							= currency.html_safe
 							= format("%.2f", cur_val)
+						-# if holding.last_trans
+					        
 					%td.text-rights Gain
 					%td.text-right Gain %
 					%td.text-right Day's gain

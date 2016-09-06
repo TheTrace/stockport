@@ -247,6 +247,10 @@ Need to:
   - Need bought at price (aggregate each purchase to a total?)
 	- Sort out Market values with companies, holdings, etc
 	
+# Sep 16
+- When the US market opens, the Yahoo results have "N/A" for the change and % - need to cope with this
+	"--- 328.30,9/6/2016,2:16pm,-3.00 - -0.91%" becomes
+	"--- 796.87,9/2/2016,4:00pm,N/A"
 
 
 Done:
