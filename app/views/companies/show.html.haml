@@ -57,6 +57,9 @@
 		%dt Sector:
 		%dd= Company::Sector::NAMES[@company.sector] if @company.sector
 
+		%dt Industry:
+		%dd= Company::Industry::NAMES[@company.industry] if @company.industry
+
 		%dt Description:
 		%dd= @company.description.gsub(/\n/, "<br />").html_safe
 
